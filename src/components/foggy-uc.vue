@@ -1,25 +1,33 @@
 <template>
-  <div class="home">
-    <FoggyUC/>
+  <div class="background-page">
+    <section class="fog">
+      <figure
+        class="absolute-bg"
+        style="background-image: url('https://wallpapercave.com/wp/2w9pZKq.jpg');"
+      >
+        <div class="space"/>
+        <typing-welcome-text class="welcome-text"/>
+      </figure>
+      <div class="fog__container">
+        <div class="fog__img fog__img--first"></div>
+        <div class="fog__img fog__img--second"></div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import FoggyUC from "../components/foggy-uc.vue";
+import TypingWelcomeText from "../components/typing-welcome-text.vue";
 
 export default {
-  name: "home",
+  name: "foggy-background",
   components: {
-    FoggyUC
+    TypingWelcomeText
   }
 };
 </script>
 
 <style lang="scss">
-html {
-  box-sizing: border-box;
-}
-
 *,
 *:before,
 *:after {
@@ -28,6 +36,11 @@ html {
 
 figure {
   margin: 0;
+  opacity: 0.85;
+
+  .space {
+    height: 13%
+  }
 }
 
 .absolute-bg {
@@ -69,14 +82,14 @@ figure {
     width: 300vw;
 
     &--first {
-      background: url('https://res.cloudinary.com/dkr52htco/image/upload/v1536173269/fog-1.png') repeat-x;
+      background: url('https://s3.envato.com/files/558f4bf2-7b95-4b52-a1b7-fa1748a381d5/inline_image_preview.jpg') repeat-x;
       background-size: contain;
       background-position: center;
       animation: marquee 60s linear infinite;
     }
 
     &--second {
-      background: url('https://res.cloudinary.com/dkr52htco/image/upload/v1536173269/fog-2.png') repeat-x;
+      background: url('https://s3.envato.com/files/558f4bf2-7b95-4b52-a1b7-fa1748a381d5/inline_image_preview.jpg') repeat-x;
       background-size: contain;
       background-position: center;
       animation: marquee 40s linear infinite;
