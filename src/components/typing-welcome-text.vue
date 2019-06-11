@@ -1,7 +1,7 @@
 <template>
   <div class="typewriter">
     <h1 class="line1">The CSSU Presents: Frosh 2019!</h1>
-    <h1 class="line3">Please stay tuned for more details.</h1>
+    <h1 class="line2">Please stay tuned for more details.</h1>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .typewriter .line1 {
 	width: auto;
 	display: block;
@@ -19,16 +20,14 @@ export default {
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
-  font-weight: bold;
-	text-shadow: 2px 2px 4px black;
-	font-size: 3vw;
-
   animation: 
     typing 3.5s steps(40, end);
   color: white;
+  font-size: 4.5vw;
+	text-shadow: 3px 3px 6px black;
 }
 
-.typewriter .line3 {
+.typewriter .line2 {
   width: auto;
 	display: block;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
@@ -36,9 +35,8 @@ export default {
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
   color: white;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px black;
-  font-size: 3vw;
+  font-size: 4.5vw;
+  text-shadow: 3px 3px 6px black;
 
   opacity: 0;
   -webkit-animation: fadeIn ease-in 1;
