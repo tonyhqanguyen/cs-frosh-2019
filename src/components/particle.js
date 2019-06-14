@@ -42,7 +42,7 @@ const ParticleNetwork = function (canvas, options) {
   this.canvasDiv = canvas
   this.canvasDiv.size = {
     'width': this.canvasDiv.offsetWidth,
-    'height': 905
+    'height': this.canvasDiv.offsetHeight
   }
 
   // Set options
