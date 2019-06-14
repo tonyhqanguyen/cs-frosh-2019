@@ -1,0 +1,14 @@
+.home {
+    text-align: center;
+}
+
+.home .welcome-title {
+    position: absolute;
+    z-index: 40;
+    font-weight: 900;
+    text-shadow: 1px 1px 2px grey;
+    font-size: calc(30px + 2vmin);
+    margin: 0 auto;
+    margin-top: 30vh;
+    margin-left: 1vw;
+}
