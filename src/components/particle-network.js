@@ -18,7 +18,7 @@ class ParticleNetwork extends Component {
     const { classes, id } = this.props;
 
     return (
-      <div id={id} className={classes} />
+      <div className={classes} />
     )
   }
 }

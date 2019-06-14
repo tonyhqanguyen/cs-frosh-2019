@@ -1,16 +1,19 @@
-.html {
-  min-width: 100vw;
-}
-
-ody {
+html {
   margin: 0;
   min-height: 100vh;
   min-width: 100vw;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Raleway", "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  height: 100vh;
 }
 
 code {
@@ -33,15 +36,7 @@ code {
   src: local('Raleway Thin'), local('Raleway-Thin'), url(https://fonts.gstatic.com/s/raleway/v11/RJMlAoFXXQEzZoMSUteGWJBw1xU1rKptJj_0jans920.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
-body, html {
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: "Raleway", "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 100;
-  height: 100vh;
-}
+
 #hero {
   background: #000;
   height: 100vh;
