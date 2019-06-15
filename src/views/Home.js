@@ -14,13 +14,9 @@ const Home = () => {
 						<div className="col-6">
 							<div className="row text-row">
 								<h1 className="welcome-title">
-										Computer Science Orientation 2019!
+									Computer Science Orientation 2019!
 								</h1>
-							</div>
-							<div className="row buttons-row">
 								<Buttons names={["Register", "Information"]}/>
-							</div>
-							<div className="row">
 							</div>
 						</div>
 						<div className="col-3"></div>
