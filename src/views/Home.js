@@ -18,12 +18,8 @@ const Home = () => {
 								</h1>
 							</div>
 							<div className="row buttons-row">
-								<div className="col-3"></div>
-								<div className="col-6">
-									<Buttons names={["Register", "Information"]}/>
-								</div>
+								<Buttons names={["Register", "Information"]}/>
 							</div>
-							<div className="col-3"></div>
 							<div className="row">
 							</div>
 						</div>

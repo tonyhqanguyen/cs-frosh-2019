@@ -1,5 +1,6 @@
 .btn-group {
   z-index: 40;
+  top: 5vh;
 }
 
 .btn {
