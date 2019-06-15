@@ -1,13 +1,16 @@
 import React from 'react';
-import Home from "./views/Home";
+import Main from './Main.js';
 import './App.css';
+import { BrowserRouter as Router} from "react-router-dom";
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-          <Home />
-      </div>
+      <Router>
+        <div className="App">
+          <Main />
+        </div>
+      </Router>
     );
   }
 }

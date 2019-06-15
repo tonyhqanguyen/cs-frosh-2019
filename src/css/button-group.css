@@ -1,0 +1,22 @@
+.btn-group {
+  z-index: 40;
+}
+
+.btn {
+  background-color: transparent;
+  border-color: black;
+  box-shadow: none;
+  color: black;
+  font-weight: bold;
+}
+
+.btn:hover, .btn:focus, .btn:not(:disabled):not(.disabled):active, 
+.btn:not(:disabled):not(.disabled):active:focus {
+  background-color: #1AD4BA;
+  border-color: #1AD4BA;
+  color: black;
+  border-color: black;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+}
