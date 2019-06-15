@@ -7,11 +7,181 @@
 
 .home .welcome-title {
     position: absolute;
-    z-index: 40;
+    z-index: 50;
     font-weight: 900;
-    text-shadow: 1px 1px 2px grey;
     font-size: calc(30px + 2vmin);
     top: 33vh;
+    margin: 0 auto;
+    overflow: hidden;
+    animation: fall 3.5s 1;
+    background-color: black;
+}
+
+@keyframes fall {
+    0% {
+        margin-top: -7vh;
+        background-color: black;
+    }
+    100% {
+        margin-top: 0vh;
+    }
+}
+
+.welcome-title span {
+    animation: animate 2s linear infinite;
+    color: black;
+}
+
+.welcome-title span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.welcome-title span:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.welcome-title span:nth-child(3) {
+    animation-delay: 0.50s;
+}
+
+.welcome-title span:nth-child(4) {
+    animation-delay: 0.75s;
+}
+
+.welcome-title span:nth-child(5) {
+    animation-delay: 1s;
+}
+
+.welcome-title span:nth-child(6) {
+    animation-delay: 1.25s;
+}
+
+.welcome-title span:nth-child(7) {
+    animation-delay: 1.50s;
+}
+
+.welcome-title span:nth-child(8) {
+    animation-delay: 1.75s;
+}
+
+.welcome-title span:nth-child(9) {
+    animation-delay: 2s;
+}
+
+.welcome-title span:nth-child(10) {
+    animation-delay: 2.25s;
+}
+
+.welcome-title span:nth-child(11) {
+    animation-delay: 2.50s;
+}
+
+.welcome-title span:nth-child(12) {
+    animation-delay: 2.75s;
+}
+
+.welcome-title span:nth-child(13) {
+    animation-delay: 3s;
+}
+
+.welcome-title span:nth-child(14) {
+    animation-delay: 3.25s;
+}
+
+.welcome-title span:nth-child(15) {
+    animation-delay: 3.50s;
+}
+
+.welcome-title span:nth-child(16) {
+    animation-delay: 3.75s;
+}
+
+.welcome-title span:nth-child(17) {
+    animation-delay: 4s;
+}
+
+.welcome-title span:nth-child(18) {
+    animation-delay: 4.25s;
+}
+
+.welcome-title span:nth-child(19) {
+    animation-delay: 4.50s;
+}
+
+.welcome-title span:nth-child(20) {
+    animation-delay: 4.75s;
+}
+
+.welcome-title span:nth-child(21) {
+    animation-delay: 5s;
+}
+
+.welcome-title span:nth-child(22) {
+    animation-delay: 5.25s;
+}
+
+.welcome-title span:nth-child(23) {
+    animation-delay: 5.50s;
+}
+
+.welcome-title span:nth-child(24) {
+    animation-delay: 5.75s;
+}
+
+.welcome-title span:nth-child(25) {
+    animation-delay: 6s;
+}
+
+.welcome-title span:nth-child(26) {
+    animation-delay: 6.25s;
+}
+
+.welcome-title span:nth-child(27) {
+    animation-delay: 6.50s;
+}
+
+.welcome-title span:nth-child(28) {
+    animation-delay: 6.75s;
+}
+
+.welcome-title span:nth-child(29) {
+    animation-delay: 7s;
+}
+
+.welcome-title span:nth-child(30) {
+    animation-delay: 7.25s;
+}
+
+.welcome-title span:nth-child(31) {
+    animation-delay: 7.50s;
+}
+
+.welcome-title span:nth-child(32) {
+    animation-delay: 7.75s;
+}
+
+.welcome-title span:nth-child(33) {
+    animation-delay: 8s;
+}
+
+.welcome-title span:nth-child(34) {
+    animation-delay: 8.25s;
+}
+
+@keyframes animate {
+    0%, 100% {
+        color: #fff;
+        filter: blur(2px);
+        text-shadow: 0 0 2px #00b3ff,
+                    0 0 4px #00b3ff,    
+                    0 0 8px #00b3ff,
+                    0 0 16px #00b3ff;
+    }
+    5%, 95% {
+        color: #111;
+        filter: blur(0px);
+        text-shadow: 0 0 2px none;
+    }
 }
 
 .container {

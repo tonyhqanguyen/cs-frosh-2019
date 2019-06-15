@@ -100,7 +100,8 @@ ParticleNetwork.prototype.init = function () {
   this.setStyles(this.canvasDiv, { 'position': 'relative' })
   this.setStyles(this.canvas, {
     'z-index': '20',
-    'position': 'relative'
+    'position': 'relative',
+    'background-color': 'black'
   })
 
   // Add resize listener to canvas

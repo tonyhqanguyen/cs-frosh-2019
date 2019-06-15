@@ -1,13 +1,21 @@
 .btn-group {
   z-index: 40;
   margin-top: 27vh;
+  animation:
+    fade 10s 1;
+}
+
+@keyframes fade {
+  0% { opacity: 0 }
+  96% { opacity: 0 }
+  100% { opacity: 1 }
 }
 
 .btn {
   background-color: transparent;
-  border-color: black;
+  border-color: #1AD4BA;
   box-shadow: none;
-  color: black;
+  color: white;
   font-weight: bold;
 }
 
