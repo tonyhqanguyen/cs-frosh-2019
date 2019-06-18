@@ -8,10 +8,10 @@ const Home = () => {
 			<div className="container">
 				<div className="row justify-content-center align-items-center">
 					<div className="home">
-						<div className="col-3">
+						<div className="col-2">
 							<ParticleNetwork id="particles" classes="particles-network"/>
 						</div>
-						<div className="col-6">
+						<div className="col-8">
 							<div className="row text-row">
 								<h1 className="welcome-title">
 									<span>C</span>
@@ -49,10 +49,11 @@ const Home = () => {
 									<span>9</span>
 									<span>!</span>
 								</h1>
-								<Buttons names={["Register", "Information"]}/>
+								<Buttons names={["Register", "Information"]} 
+												 routes={{0: "/register", 1: "/information"}}/>
 							</div>
 						</div>
-						<div className="col-3"></div>
+						<div className="col-2"></div>
 					</div>
 				</div>
 			</div>

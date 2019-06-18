@@ -1,8 +1,8 @@
 .btn-group {
   z-index: 40;
-  margin-top: 27vh;
+  margin-top: 25vh;
   animation:
-    fade 10s 1;
+    fade 4s 1;
 }
 
 @keyframes fade {
@@ -13,16 +13,20 @@
 
 .btn {
   background-color: transparent;
-  border-color: #1AD4BA;
-  box-shadow: none;
+  border-color: white;
+  box-shadow: 1 1 1px gold,
+              1 1 2px white;
   color: white;
+  text-shadow: 1 1 1px gold,
+               1 1 2px white,
+               1 1 4px white;
   font-weight: bold;
 }
 
 .btn:hover, .btn:focus, .btn:not(:disabled):not(.disabled):active, 
 .btn:not(:disabled):not(.disabled):active:focus {
-  background-color: #1AD4BA;
-  border-color: #1AD4BA;
+  background-color: white;
+  border-color: white;
   color: black;
   border-color: black;
   cursor: pointer;

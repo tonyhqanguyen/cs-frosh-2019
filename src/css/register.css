@@ -1,0 +1,32 @@
+.col-2 {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.col-8 {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.row {
+  margin: 0;
+}
+.card {
+  z-index: 40;
+  width: 100vw;
+  height: 80vh;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-check {
+  text-align: left;
+}
+
+.form-check-label {
+  text-align: left;
+}

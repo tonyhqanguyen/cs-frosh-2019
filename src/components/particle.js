@@ -48,7 +48,7 @@ const ParticleNetwork = function (canvas, options) {
   // Set options
   options = options !== undefined ? options : {}
   this.options = {
-    particleColor: (options.particleColor !== undefined) ? options.particleColor : '#003366',
+    particleColor: (options.particleColor !== undefined) ? options.particleColor : '#fff',
     background: (options.background !== undefined) ? options.background : '#fff',
     interactive: (options.interactive !== undefined) ? options.interactive : true,
     velocity: this.setVelocity(options.velocity),
