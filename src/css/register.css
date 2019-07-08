@@ -16,7 +16,7 @@
 .card {
   z-index: 40;
   width: 100vw;
-  height: 80vh;
+  height: 83vh;
   overflow-y: scroll;
 }
 
@@ -30,4 +30,44 @@
 
 .form-check-label {
   text-align: left;
+}
+
+.form-control {
+  font-weight: bold;
+}
+
+.btn-submit {
+  border-color: black;
+  color: black;
+  margin: 0.5%;
+}
+
+.btn-submit:hover, .btn-submit:focus, .btn-submit:not(:disabled):not(.disabled):active, 
+.btn-submit:not(:disabled):not(.disabled):active:focus {
+  background-color: black;
+  color: white;
+  border-color: black;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+}
+
+.text {
+  text-align: left;
+}
+
+.confirmation-instruction {
+  padding-bottom: 2vh;
+  text-align: left;
+}
+
+.success {
+  font-size: 1.5vmax;
+  text-align: left;
+  margin: 4vw;
+}
+
+.confirmation {
+  font-size: 1.5vmax;
+  margin: 4vw;
 }

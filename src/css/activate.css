@@ -1,0 +1,33 @@
+.activation-instructions {
+  text-align: left;
+  font-weight: bold;
+  font-size: calc(10px + 2.2vmin);
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+.activation-form {
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-top: 5%;
+  font-size: calc(4px + 2.1vmin);
+}
+
+.alert-left {
+  text-align: left;
+}
+
+.form-font-size {
+  font-size: calc(4px + 2.1vmin);
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.account-created {
+  margin: 2%;
+  font-size: calc(10px + 2.2vmin);
+  font-weight: bold;
+}

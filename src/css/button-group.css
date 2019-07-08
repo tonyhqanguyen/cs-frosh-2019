@@ -1,6 +1,9 @@
 .btn-group {
   z-index: 40;
-  margin-top: 25vh;
+  margin-top: 21vh; 
+}
+
+.animation {
   animation:
     fade 4s 1;
 }
