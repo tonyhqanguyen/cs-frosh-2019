@@ -1,3 +1,11 @@
+.activation-card {
+  overflow: auto !important;
+}
+
+.card-body {
+  overflow: auto
+}
+
 .activation-instructions {
   text-align: left;
   font-weight: bold;
@@ -30,4 +38,20 @@
   margin: 2%;
   font-size: calc(10px + 2.2vmin);
   font-weight: bold;
+}
+
+.btn-login {
+  color: black;
+  border-color: black;
+}
+
+.btn-login:hover, .btn-login:focus, .btn-login:not(:disabled):not(.disabled):active, 
+.btn-login:not(:disabled):not(.disabled):active:focus {
+  background-color: black;
+  border-color: black;
+  color: white;
+  border-color: white;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
 }

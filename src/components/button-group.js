@@ -5,7 +5,6 @@ import "../css/button-group.css";
 
 const Buttons = (props) => {
   const buttonClassName = props.animate ? "btn-group animate" : "btn-group";
-  console.log(buttonClassName);
   const buttons = props.names.map((name, i) => {
     return (
       <Link to={props.routes[i]} key={i}>

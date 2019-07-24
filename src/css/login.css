@@ -1,0 +1,11 @@
+.login-card {
+  overflow: auto;
+  width: auto;
+  height: auto;
+  font-size: auto;
+}
+
+.login-instructions {
+  font-size: 27.4px;
+  font-weight: bold;
+}

@@ -52,16 +52,15 @@ class Home extends React.Component {
 	}
 
 	render() {
-		console.log(this.state);
 		let classTitle = this.state.loadAnimation ? "welcome-title-animate" : "welcome-title";
 		return (
 			<div className="container">
 				<div className="row justify-content-center align-items-center">
 					<div className="home">
-						<div className="col-2">
+						<div className="col-1">
 							<ParticleNetwork id="particles" classes="particles-network"/>
 						</div>
-						<div className="col-8">
+						<div className="col-10">
 							<div className="row text-row justify-content-center align-items-center d-flex">
 								<h1 className={classTitle}>
 									<span>C</span>
@@ -99,13 +98,14 @@ class Home extends React.Component {
 									<span>9</span>
 									<span>!</span>
 								</h1>
-								<Buttons names={["Register", "Information"]} 
-									 			 routes={{ 0: "/register", 1: "/information" }}
+								<Buttons names={["Register", "Information", "Manage Profile"]} 
+												 routes={{ 0: "/register", 1: "/information", 2: "/profile" }}
+													
 												 click={this.stopAnimation.bind(this)}
 												 animate={this.state.loadAnimation}/>
 							</div>
 						</div>
-						<div className="col-2"></div>
+						<div className="col-1"></div>
 					</div>
 				</div>
 			</div>

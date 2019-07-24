@@ -17,7 +17,7 @@
   z-index: 40;
   width: 100vw;
   height: 83vh;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .form-group {

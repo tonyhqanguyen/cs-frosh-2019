@@ -1,8 +1,9 @@
-import React from "react";
-import ParticleNetwork from "../components/particle-network";
-import * as registration from "../api/registration-api";
-import "../css/register.css";
-import RegisterConfirmation from "./RegisterConfirmation";
+import React from 'react';
+import ParticleNetwork from '../components/particle-network';
+import InfoForm from '../components/info';
+import * as registration from '../api/registration-api';
+import '../css/register.css';
+import RegisterConfirmation from './RegisterConfirmation';
 
 class Register extends React.Component {
   state = {
@@ -17,7 +18,8 @@ class Register extends React.Component {
     submitted: false,
     registered: false,
     problem: false,
-    problemMessage: ""
+    problemMessage: "",
+    loading: false,
   }
 
   register = async () => {
@@ -32,13 +34,15 @@ class Register extends React.Component {
       data = { ...this.state.info, diet: "None", accom: "None" };
     }
 
+    await this.setState({ loading: true });
     const resp = await registration.registerStudent(data);
+    await this.setState({ loading: false });
     console.log("resp", resp);
 
-    if (resp === "Registration email sent successfully!") {
+    if (resp.data === "Registration email sent successfully!") {
       await this.setState({ registered: true, problem: false, problemMessage: "" })
-    } else if (resp === "Email already exists") {
-      await this.setState({ registered: false, problem: true, problemMessage: resp })
+    } else if (resp.data === "Email already exists.") {
+      await this.setState({ registered: false, problem: true, problemMessage: resp.data })
     }
   }
 
@@ -46,8 +50,15 @@ class Register extends React.Component {
     await this.setState({ info: { ...this.state.info, [event.target.name]: event.target.value } });
   }
 
-  setSubmittedTrue = () => {
-    this.setState({submitted: true});
+  setSubmittedTrue = async (e) => {
+    e.preventDefault();
+    if (this.state.info.name === "" || this.state.info.email === "" || this.state.info.phone === "" || this.state.shirt === "") {
+      await this.setState({ problem: true, problemMessage: "The fields name, email, phone and shirt are required, please fill them all." });
+    } else if (isNaN(this.state.info.phone)) {
+      await this.setState({ problem: true, problemMessage: "Your phone number must be numeric." });
+    } else {
+      this.setState({submitted: true});
+    }
   }
 
   setSubmittedFalse = () => {
@@ -63,125 +74,17 @@ class Register extends React.Component {
           </div>
           <div className="col-8 align-items-center d-flex">
             <div className="card">
-              <div className="card-body">
-                <form onSubmit={this.setSubmittedTrue.bind(this)}>
-                  <div className="form-group">
-                    <label htmlFor="name-field">Full name</label>
-                    <input type="name" 
-                           name="name"
-                           value={this.state.info.name}
-                           onChange={this.handleChange}
-                           className="form-control" 
-                           id="name-field" 
-                           placeholder="Your full name..."/>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email-field">Email address</label>
-                    <input type="email" 
-                          name="email"
-                          value={this.state.info.email}
-                          onChange={this.handleChange.bind(this)}
-                          className="form-control" 
-                          id="email-field" 
-                          placeholder="Your email address..."/>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="phone-field">Phone number</label>
-                    <input type="phone" 
-                           name="phone"
-                           value={this.state.info.phone}
-                           onChange={this.handleChange.bind(this)}
-                           className="form-control" 
-                           id="phone-field" 
-                           placeholder="Your phone number..."/>
-                  </div>
-                  <div className="form-check-label">
-                    <label htmlFor="shirt-size">Shirt size</label>
-                  </div>
-                  <div className="form-check" id="shirt-size">
-                    <input className="form-check-input" 
-                           type="radio" 
-                           name="shirt"
-                           onChange={this.handleChange.bind(this)} 
-                           id="xs" 
-                           value="xtra-small"/>
-                    <label className="form-check-label" htmlFor="xs">
-                      XS
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" 
-                           type="radio" 
-                           name="shirt"
-                           onChange={this.handleChange.bind(this)} 
-                           id="sm" 
-                           value="small"/>
-                    <label className="form-check-label" htmlFor="sm">
-                      S
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" 
-                           type="radio" 
-                           name="shirt" 
-                           onChange={this.handleChange.bind(this)} 
-                           id="md" 
-                           value="medium"/>
-                    <label className="form-check-label" htmlFor="md">
-                      M
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" 
-                           type="radio" 
-                           name="shirt" 
-                           onChange={this.handleChange.bind(this)} 
-                           id="lg" 
-                           value="large"/>
-                    <label className="form-check-label" htmlFor="lg">
-                      L
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" 
-                           type="radio"
-                           name="shirt" 
-                           onChange={this.handleChange.bind(this)} 
-                           id="xl" 
-                           value="xtra-large"/>
-                    <label className="form-check-label" htmlFor="xl">
-                      XL
-                    </label>
-                  </div>
-                  <p></p>
-                  <div className="form-group">
-                    <label htmlFor="food">Dietary restrictions</label>
-                    <textarea className="form-control" 
-                              id="food"
-                              name="diet" 
-                              value={this.state.info.diet}
-                              onChange={this.handleChange.bind(this)} 
-                              rows="3" 
-                              placeholder="Please inform us of any dietary 
-                              restrictions including allergies..."></textarea>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="accom">Accomodations</label>
-                    <textarea className="form-control" 
-                              id="accom" 
-                              name="accom"
-                              value={this.state.info.accom}
-                              onChange={this.handleChange.bind(this)} 
-                              rows="3" 
-                              placeholder="Please inform us of any accomodations you 
-                              will require..."></textarea>
-                  </div>
-                </form>
-                <button type="button" className="btn btn-primary btn-submit"
-                        onClick={this.setSubmittedTrue.bind(this)}>
-                  Submit
-                </button>
-              </div>
+            {this.state.problem ? 
+              <div className="alert alert-danger" role="alert">
+                {this.state.problemMessage}
+              </div> : null}
+              <InfoForm info={this.state.info}
+                          this={this}
+                          setSubmittedTrue={this.setSubmittedTrue}
+                          handleChange={this.handleChange}
+                          displayEmail={true}
+                          loading={this.state.loading}
+              />
             </div>
           </div>
           <div className="col-2">
@@ -195,7 +98,8 @@ class Register extends React.Component {
                             info={this.state.info} 
                             success={{ registered: this.state.registered, 
                                        problem: this.state.problem, 
-                                       problemMessage: this.state.problemMessage }}/>
+                                       problemMessage: this.state.problemMessage }}
+                            loading={this.state.loading}/>
     )
 
     let renderElement = this.state.submitted ? confirmation : registrationForm;

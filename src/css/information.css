@@ -1,0 +1,21 @@
+.intro {
+  color: white;
+  text-align: left;
+  margin: 1%;
+}
+
+@media only screen and (min-width: 768px) {
+  .intro {
+    width: 50%;
+  }
+}
+
+.title {
+  font-size: calc(20px + 3vmin);
+  font-weight: bold;
+}
+
+.about {
+  font-size: calc(13px + 1vmin);
+  font-weight: bold;
+}

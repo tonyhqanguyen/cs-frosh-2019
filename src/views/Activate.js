@@ -1,6 +1,7 @@
 import React from "react";
 import ParticleNetwork from "../components/particle-network";
 import "../css/activate.css";
+import { Link } from 'react-router-dom';
 import * as activation from "../api/activation-api";
 
 
@@ -29,7 +30,6 @@ class Activate extends React.Component {
 
   handlePasswordChange = async (event) => {
     await this.setState({ password: { ...this.state.password, [event.target.name]: event.target.value } });
-    console.log(this.state.password);
   }
 
   activateAccount = async (e) => {
@@ -38,8 +38,8 @@ class Activate extends React.Component {
       if (this.state.info.email === "" || this.state.info.code === "") {
         await this.setState({ problem: true, problemMessage: "Neither of the fields can be empty on submission. Please fill both fields." });
       } else {
-        const resp = await activation.activateAccount(this.state.info);
-        console.log(resp);
+        let resp = await activation.activateAccount(this.state.info);
+        resp = resp.data;
         if (resp === "Success") {
           await this.setState({ problem: false, problemMessage: "", activated: true });
         } else if (resp === "Incorrect code") {
@@ -90,8 +90,8 @@ class Activate extends React.Component {
             const info = { ...this.state.info, password: this.state.password.newPassword };
             this.setState({ passwordLoading: true });
             const resp = await activation.createPassword(info);
-
-            if (resp === "Success") {
+            
+            if (resp.data === "Success") {
               await this.setState({ passwordCreated: true, passwordLoading: false });
             } else {
               this.setState({ passwordLoading: false })
@@ -209,7 +209,13 @@ class Activate extends React.Component {
     )
 
     const passwordCreated = (
-      <h1 className="account-created">Your account has been created successfully!</h1>
+      <div>
+        <h1 className="account-created">Your account has been created successfully!</h1>
+        <Link to={"/login"}>
+          <button type="button" className="btn btn-login">Login</button>
+        </Link>
+      </div>
+      
     )
 
     let activatedRender;
@@ -230,7 +236,7 @@ class Activate extends React.Component {
             <ParticleNetwork id="particles" classes="particles-network"/>
           </div>
           <div className="col-8 align-items-center d-flex">
-            <div className="card">
+            <div className="card activation-card">
               <div className="card-body">
                 { this.state.activated ? activatedRender : notActivated }
               </div>

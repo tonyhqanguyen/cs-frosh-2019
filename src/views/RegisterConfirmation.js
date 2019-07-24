@@ -92,10 +92,36 @@ const RegisterConfirmation = (props) => {
       </div>
   )
 
+  const loading = (
+    <div className="container">
+        <div className="row d-flex justify-content-center">
+          <div className="col-2">
+            <ParticleNetwork id="particles" classes="particles-network"/>
+          </div>
+          <div className="col-8 align-items-center d-flex">
+            <div className="card">
+              <div className="card-body">
+                <div className="row d-flex justify-content-center">
+                  <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-2">
+          </div>
+        </div>
+      </div>
+  )
+
   let renderElement;
-  if (props.success.registered && !props.success.problem) {
+  if (props.loading) {
+    renderElement = loading;
+  }
+  else if (props.success.registered && !props.success.problem) {
     renderElement = success;
-  } else if (!props.success.registered && props.success.problem && props.success.problemMessage === "Email already exists") {
+  } else if (!props.success.registered && props.success.problem && props.success.problemMessage === "Email already exists.") {
     renderElement = emailTaken;
   } else if (!props.success.registered && !props.success.problem) {
     renderElement = confirmation;
