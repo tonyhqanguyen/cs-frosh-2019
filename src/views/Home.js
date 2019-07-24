@@ -98,7 +98,7 @@ class Home extends React.Component {
 									<span>9</span>
 									<span>!</span>
 								</h1>
-								<Buttons names={["Register", "Information", "Manage Profile"]} 
+								<Buttons names={["Register", "About", "Profile"]} 
 												 routes={{ 0: "/register", 1: "/information", 2: "/profile" }}
 													
 												 click={this.stopAnimation.bind(this)}
