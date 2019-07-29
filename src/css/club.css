@@ -1,0 +1,27 @@
+.club-card {
+  height: auto;
+}
+
+.btn-submit {
+  border-color: black;
+  color: black;
+  margin: 0.5%;
+}
+
+.btn-submit:hover, .btn-submit:focus, .btn-submit:not(:disabled):not(.disabled):active, 
+.btn-submit:not(:disabled):not(.disabled):active:focus {
+  background-color: black;
+  color: white;
+  border-color: black;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+}
+
+.result-title {
+  margin: 2px;
+  padding: 5px;
+  font-weight: bold;
+  text-align: left;
+  font-size: calc(15px + 2vmin)
+}

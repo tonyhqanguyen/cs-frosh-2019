@@ -5,7 +5,7 @@ import * as registration from '../api/registration-api';
 import '../css/register.css';
 import RegisterConfirmation from './RegisterConfirmation';
 
-class Register extends React.Component {
+class Student extends React.Component {
   state = {
     info: {
       name: "",
@@ -57,7 +57,7 @@ class Register extends React.Component {
     } else if (isNaN(this.state.info.phone)) {
       await this.setState({ problem: true, problemMessage: "Your phone number must be numeric." });
     } else {
-      this.setState({submitted: true});
+      this.setState({ problem: false, problemMessage: "", submitted: true});
     }
   }
 
@@ -109,4 +109,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default Student;

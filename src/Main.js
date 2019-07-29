@@ -1,11 +1,13 @@
 import { Switch, Route } from 'react-router-dom';
 import React from 'react';
 import Home from './views/Home';
-import Register from './views/Register';
+import Student from './views/Student';
+import Club from './views/Club';
 import Activate from './views/Activate';
 import Information from './views/Information';
 import Login from './views/Login';
 import Profile from './views/Profile';
+import RegistrationCategory from './views/RegistrationCategory';
 import withAuth from './components/withAuth';
 
 const Main = () => { 
@@ -13,7 +15,9 @@ const Main = () => {
 		<div className="App">
 			<Switch>
 				<Route path="/" exact component={Home}/>
-				<Route path="/register" component={Register}/>
+				<Route path="/register" component={RegistrationCategory}/>
+				<Route path="/student" component={Student}/>
+				<Route path="/club" component={Club}/>
 				<Route path="/activate" component={Activate}/>
 				<Route path="/information" component={Information}/>
 				<Route path="/login" component={Login}/>
