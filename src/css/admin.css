@@ -1,0 +1,56 @@
+.nav-button:hover, .nav-button:focus, .nav-button:not(:disabled):not(.disabled):active, 
+.nav-button:not(:disabled):not(.disabled):active:focus {
+  cursor: pointer;
+}
+
+.nav-logout {
+  color: red !important;
+}
+
+.search-box {
+  font-weight: bold;
+}
+
+.search-button {
+  font-weight: bold;
+}
+
+.search-button:hover, .search-button:focus, .search-button:not(:disabled):not(.disabled):active, 
+.search-button:not(:disabled):not(.disabled):active:focus {
+  box-shadow: none;
+}
+
+.clear-button {
+  margin-left: 2px;
+}
+
+.clear-button:hover, .clear-button:focus, .clear-button:not(:disabled):not(.disabled):active, 
+.clear-button:not(:disabled):not(.disabled):active:focus {
+  color: white;
+  border-color: transparent;
+}
+
+.nav-collapse-left {
+  text-align: left;
+}
+
+.admin-table {
+  color: white;
+}
+
+th, td {
+  text-align: left;
+}
+
+.loading {
+  height: 10rem;
+  width: 10rem;
+}
+
+.container {
+  height: 100vh;
+}
+
+.admin-row, .loading-row {
+  height: 100vh;
+}

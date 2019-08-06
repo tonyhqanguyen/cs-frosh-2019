@@ -10,7 +10,7 @@ const Buttons = (props) => {
   const buttons = props.names.map((name, i) => {
     return (
       <Link to={props.routes[i]} key={i}>
-        <button type="button" className={"btn" + innerButtonClassName} key={i} onClick={props.click}>{name}</button>
+        <button type="button" className={"btn btn-in-group" + innerButtonClassName} key={i} onClick={props.click}>{name}</button>
       </Link>
     )
   })

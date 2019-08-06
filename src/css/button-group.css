@@ -1,6 +1,6 @@
-.btn-group {
-  z-index: 40;
-  margin-top: 21vh; 
+.btn-in-groups, .btn-group {
+  z-index: 40 !important;
+  margin-top: 15vh !important; 
 }
 
 .animation {
@@ -14,7 +14,7 @@
   100% { opacity: 1 }
 }
 
-.btn {
+.btn-in-group {
   background-color: transparent;
   border-color: white;
   box-shadow: 1 1 1px gold,
@@ -26,8 +26,8 @@
   font-weight: bold;
 }
 
-.btn:hover, .btn:focus, .btn:not(:disabled):not(.disabled):active, 
-.btn:not(:disabled):not(.disabled):active:focus {
+.btn-in-group:hover, .btn-in-group:focus, .btn-in-group:not(:disabled):not(.disabled):active, 
+.btn-in-group:not(:disabled):not(.disabled):active:focus {
   background-color: white;
   border-color: white;
   color: black;

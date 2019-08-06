@@ -142,7 +142,7 @@ class Activate extends React.Component {
                     id="activation-code" 
                     placeholder="Your activation code..."/>
           </div>
-          <button type="submit" className="btn btn-primary btn-submit">
+          <button type="submit" className="btn btn-submit">
             Submit
           </button>
         </form>
@@ -201,7 +201,7 @@ class Activate extends React.Component {
                     id="confirm-password" 
                     placeholder="Re-enter your password..."/>
           </div>
-          <button type="submit" className="btn btn-primary btn-submit">
+          <button type="submit" className="btn btn-submit">
             Submit
           </button>
         </form>

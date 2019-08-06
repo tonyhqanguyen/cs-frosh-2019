@@ -10,7 +10,8 @@ const withAuth = (ComponentToProtect) => {
       this.state = {
         loading: true,
         redirect: false,
-        data: null
+        data: null,
+        token: ""
       };
     }
 
@@ -23,6 +24,7 @@ const withAuth = (ComponentToProtect) => {
           const cookie = cookies[i].slice(0, idx);
           if (cookie === "token") {
             jwt = cookies[i].slice(idx + 1);
+            await this.setState({ token: jwt });
             break
           }
         }
@@ -52,7 +54,7 @@ const withAuth = (ComponentToProtect) => {
       }
       return (
         <React.Fragment>
-          <ComponentToProtect {...this.props} data={this.state.data} />
+          <ComponentToProtect {...this.props} data={this.state.data} token={this.state.token} />
         </React.Fragment>
       );
     }

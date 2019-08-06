@@ -26,8 +26,8 @@ class Login extends React.Component {
 
     if (result.status === 200) {
       document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-      document.cookie = `token=${result.data}`;
-      this.props.history.push('/profile');
+      document.cookie = `token=${result.data.token}`;
+      this.props.history.push(result.data.role === "student" ? '/profile' : '/admin');
     } else {
       this.setState({ problem: true, problemMessage: "The email and password combination you entered did not match any record on our files." });
     }
@@ -69,7 +69,7 @@ class Login extends React.Component {
                        id="password" 
                        placeholder="Password..."/>
               </div>
-              <button type="submit" className="btn btn-primary btn-submit">Submit</button>
+              <button type="submit" className="btn btn-submit">Submit</button>
             </form>
             </div>
           </div>

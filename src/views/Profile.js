@@ -1,12 +1,14 @@
 import React from 'react';
 import ParticleNetwork from '../components/particle-network';
 import InfoForm from '../components/info';
+import { Redirect } from 'react-router-dom';
 import '../css/profile.css'
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      redirectAdmin: this.props.data.role === "admin",
       email: this.props.data.email,
       info: {
         accom: this.props.data.accom,
@@ -32,6 +34,10 @@ class Profile extends React.Component {
   }
 
   render() {
+    if (this.state.redirectAdmin) {
+      return <Redirect to="/admin"/>
+    }
+    
     return (
       <div className="container">
       <div className="row d-flex justify-content-center">

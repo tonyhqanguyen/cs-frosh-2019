@@ -26,10 +26,10 @@ const RegisterConfirmation = (props) => {
                     <p>Dietary restrictions: {props.info.diet === "" ? "None" : props.info.diet}</p>
                     <p>Accomodations: {props.info.accom === "" ? "None" : props.info.accom}</p>
                   </div>
-                  <button type="button" className="btn btn-primary btn-submit" onClick={props.register}>
+                  <button type="button" className="btn btn-submit" onClick={props.register}>
                     Confirm and register
                   </button>
-                  <button type="button" className="btn btn-primary btn-submit" onClick={props.back}>
+                  <button type="button" className="btn btn-submit" onClick={props.back}>
                     Return to registration page
                   </button>
                 </div>           

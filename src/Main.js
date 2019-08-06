@@ -8,6 +8,7 @@ import Information from './views/Information';
 import Login from './views/Login';
 import Profile from './views/Profile';
 import RegistrationCategory from './views/RegistrationCategory';
+import Admin from './views/Admin';
 import withAuth from './components/withAuth';
 
 const Main = () => { 
@@ -22,6 +23,7 @@ const Main = () => {
 				<Route path="/information" component={Information}/>
 				<Route path="/login" component={Login}/>
 				<Route path="/profile" component={withAuth(Profile)}/>
+				<Route path="/admin" component={withAuth(Admin)}/>
 			</Switch>
 		</div>    
 	)

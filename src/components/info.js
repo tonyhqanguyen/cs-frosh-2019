@@ -10,7 +10,7 @@ const InfoForm = (props) => {
                   name="name"
                   value={props.info.name}
                   onChange={props.handleChange}
-                  className="form-control" 
+                  className="form-control info-form" 
                   id="name-field" 
                   placeholder="Your full name..."/>
         </div>
@@ -21,7 +21,7 @@ const InfoForm = (props) => {
                 name="email"
                 value={props.info.email}
                 onChange={props.handleChange.bind(props.this)}
-                className="form-control" 
+                className="form-control info-form" 
                 id="email-field" 
                 placeholder="Your email address..."/>
         </div> : null}
@@ -31,7 +31,7 @@ const InfoForm = (props) => {
                   name="phone"
                   value={props.info.phone}
                   onChange={props.handleChange.bind(props.this)}
-                  className="form-control" 
+                  className="form-control info-form" 
                   id="phone-field" 
                   placeholder="Your phone number..."/>
         </div>
@@ -101,7 +101,7 @@ const InfoForm = (props) => {
         <p></p>
         <div className="form-group">
           <label htmlFor="food">Dietary restrictions</label>
-          <textarea className="form-control" 
+          <textarea className="form-control info-form" 
                     id="food"
                     name="diet" 
                     value={props.info.diet}
@@ -112,7 +112,7 @@ const InfoForm = (props) => {
         </div>
         <div className="form-group">
           <label htmlFor="accom">Accomodations</label>
-          <textarea className="form-control" 
+          <textarea className="form-control info-form" 
                     id="accom" 
                     name="accom"
                     value={props.info.accom}
@@ -122,11 +122,11 @@ const InfoForm = (props) => {
                     will require..."></textarea>
         </div>
       </form>
-      <button type="submit" className="btn btn-primary btn-submit"
+      <button type="submit" className="btn btn-submit"
               onClick={props.setSubmittedTrue.bind(props.this)}>
         {props.displayEmail ? "Submit" : "Update"}
       </button>
-      {!props.displayEmail ? <button type="button" className="btn btn-primary btn-submit"
+      {!props.displayEmail ? <button type="button" className="btn btn-submit"
               onClick={props.logout.bind(props.this)}>
         Logout
       </button> : null}
