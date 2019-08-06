@@ -68,7 +68,7 @@ class Admin extends React.Component {
     e.preventDefault();
     if (this.state.keyword !== "") {
       this.setState({ loading: true });
-      let query = this.state.navActive === "students" ? { students: this.state.cacheStudents } : { clubs: this.state.cacheStudents };
+      let query = this.state.navActive === "students" ? { students: this.state.cacheStudents } : { clubs: this.state.cacheClubs };
       query = { ...query, keyword: this.state.keyword, token: this.state.token };
       const search = this.state.navActive === "students" ? admin.searchStudents : admin.searchClubs;
 
