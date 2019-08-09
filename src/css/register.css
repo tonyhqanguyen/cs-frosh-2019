@@ -7,7 +7,7 @@
 .col-8 {
   padding: 0;
   width: 100vw;
-  height: 100vh;
+  height: auto;
 }
 
 .row {
@@ -70,4 +70,15 @@
 .confirmation {
   font-size: 1.5vmax;
   margin: 4vw;
+}
+
+.btn-confirm {
+  font-size: 1.5vmax;
+  width: 180.42px;
+}
+
+@media only screen and (min-width: 677px) {
+  .btn-confirm {
+    width: auto;
+  }
 }

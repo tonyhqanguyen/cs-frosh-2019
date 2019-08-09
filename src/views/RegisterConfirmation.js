@@ -23,13 +23,16 @@ const RegisterConfirmation = (props) => {
                     <p>Phone number: {props.info.phone}</p>
                     <p>Shirt size: 
                     {` ${props.info.shirt.charAt(0).toUpperCase()}${props.info.shirt.slice(1, props.info.shirt.length)}`}</p>
-                    <p>Dietary restrictions: {props.info.diet === "" ? "None" : props.info.diet}</p>
+                    <p>Dietary restrictions: {props.info.diet.vegetarian ? "vegetarian" : ""} 
+                                            {props.info.diet.vegan ? ", vegan" : ""}
+                                             {props.info.diet.glutenFree ? `${(props.info.diet.vegetarian || props.info.diet.vegan) ? ', gluten-free' : 'gluten-free'}` : ""} 
+                                             {props.info.diet.other ? `. You specified: ${props.info.diet.otherDiets}` : ""}</p>
                     <p>Accomodations: {props.info.accom === "" ? "None" : props.info.accom}</p>
                   </div>
-                  <button type="button" className="btn btn-submit" onClick={props.register}>
+                  <button type="button" className="btn btn-submit btn-confirm" onClick={props.register}>
                     Confirm and register
                   </button>
-                  <button type="button" className="btn btn-submit" onClick={props.back}>
+                  <button type="button" className="btn btn-submit btn-confirm" onClick={props.back}>
                     Return to registration page
                   </button>
                 </div>           

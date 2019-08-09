@@ -36,10 +36,12 @@
 
 .admin-table {
   color: white;
+  font-size: 20px;
 }
 
 th, td {
   text-align: left;
+  font-weight: 900;
 }
 
 .loading {

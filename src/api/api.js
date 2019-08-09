@@ -1,15 +1,12 @@
 import axios from 'axios';
 
 export const api = (method, path, data) => {
-  return new Promise((resolve, reject) => {
-    return axios[method.toLowerCase()](path, data)
-      .then(res => {
-        return resolve(res);
-      })
-      .catch(err => {
-        console.log("error")
-        console.log(err);
-        return reject(err);
-      });
+  return new Promise( async (resolve, reject) => {
+    try {
+      const result = await axios[method.toLowerCase()](path, data);
+      return resolve(result);
+    } catch (error) {
+      return reject(error.response);
+    }
   });
 }

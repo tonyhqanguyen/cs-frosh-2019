@@ -2,7 +2,7 @@ import React from 'react';
 
 const InfoForm = (props) => {
   return (
-    <div className="card-body">
+    <div>
       <form onSubmit={props.setSubmittedTrue.bind(props.this)}>
         <div className="form-group">
           <label htmlFor="name-field">Full name</label>
@@ -10,6 +10,7 @@ const InfoForm = (props) => {
                   name="name"
                   value={props.info.name}
                   onChange={props.handleChange}
+                  readOnly={props.submitted}
                   className="form-control info-form" 
                   id="name-field" 
                   placeholder="Your full name..."/>
@@ -21,6 +22,7 @@ const InfoForm = (props) => {
                 name="email"
                 value={props.info.email}
                 onChange={props.handleChange.bind(props.this)}
+                readOnly={props.submitted}
                 className="form-control info-form" 
                 id="email-field" 
                 placeholder="Your email address..."/>
@@ -31,6 +33,7 @@ const InfoForm = (props) => {
                   name="phone"
                   value={props.info.phone}
                   onChange={props.handleChange.bind(props.this)}
+                  readOnly={props.submitted}
                   className="form-control info-form" 
                   id="phone-field" 
                   placeholder="Your phone number..."/>
@@ -43,6 +46,7 @@ const InfoForm = (props) => {
                   type="radio" 
                   name="shirt"
                   onChange={props.handleChange.bind(props.this)} 
+                  disabled={props.submitted}
                   id="xs" 
                   value="xtra-small"
                   checked={props.info.shirt === "xtra-small"}/>
@@ -54,7 +58,8 @@ const InfoForm = (props) => {
           <input className="form-check-input" 
                   type="radio" 
                   name="shirt"
-                  onChange={props.handleChange.bind(props.this)} 
+                  onChange={props.handleChange.bind(props.this)}
+                  disabled={props.submitted}
                   id="sm" 
                   value="small"
                   checked={props.info.shirt === "small"}/>
@@ -67,6 +72,7 @@ const InfoForm = (props) => {
                   type="radio" 
                   name="shirt" 
                   onChange={props.handleChange.bind(props.this)} 
+                  disabled={props.submitted}
                   id="md" 
                   value="medium"
                   checked={props.info.shirt === "medium"}/>
@@ -79,6 +85,7 @@ const InfoForm = (props) => {
                   type="radio" 
                   name="shirt" 
                   onChange={props.handleChange.bind(props.this)} 
+                  disabled={props.submitted}
                   id="lg" 
                   value="large"
                   checked={props.info.shirt === "large"}/>
@@ -91,6 +98,7 @@ const InfoForm = (props) => {
                   type="radio"
                   name="shirt" 
                   onChange={props.handleChange.bind(props.this)} 
+                  disabled={props.submitted}
                   id="xl" 
                   value="xtra-large"
                   checked={props.info.shirt === "xtra-large"}/>
@@ -100,15 +108,54 @@ const InfoForm = (props) => {
         </div>
         <p></p>
         <div className="form-group">
-          <label htmlFor="food">Dietary restrictions</label>
+          {/* <label htmlFor="food">Dietary restrictions</label>
           <textarea className="form-control info-form" 
                     id="food"
                     name="diet" 
                     value={props.info.diet}
                     onChange={props.handleChange.bind(props.this)} 
+                    readOnly={props.submitted}
                     rows="3" 
                     placeholder="Please inform us of any dietary 
-                    restrictions including allergies..."></textarea>
+                    restrictions including allergies..."></textarea> */}
+            <label htmlFor="diet">Dietary restrictions (please leave blank if not applicable)</label>
+            <div className="form-check" id="diet">
+              <input className="form-check-input" type="checkbox" name="vegetarian" checked={props.info.diet.vegetarian}  
+                     onChange={props.handleChangeCheckBox.bind(props.this)} id="vegetarian"/>
+              <label className="form-check-label" htmlFor="vegetarian">
+                Vegetarian
+              </label>
+            </div>
+            <div className="form-check" id="diet">
+              <input className="form-check-input" type="checkbox" name="vegan" checked={props.info.diet.vegan}  
+                     onChange={props.handleChangeCheckBox.bind(props.this)} id="vegan"/>
+              <label className="form-check-label" htmlFor="vegan">
+                Vegan
+              </label>
+            </div>
+            <div className="form-check" id="diet">
+              <input className="form-check-input" type="checkbox" name="glutenFree" checked={props.info.diet.glutenFree}  
+                     onChange={props.handleChangeCheckBox.bind(props.this)} id="gluten-free"/>
+              <label className="form-check-label" htmlFor="gluten-free">
+                Gluten Free
+              </label>
+            </div>
+            <div className="form-check" id="diet">
+              <input className="form-check-input" type="checkbox" name="other" checked={props.info.diet.other}  
+                     onChange={props.handleChangeCheckBox.bind(props.this)} id="other"/>
+              <label className="form-check-label" htmlFor="other">
+                Other
+              </label>
+            </div>
+            {props.info.diet.other ? <textarea className="form-control info-form" 
+                    id="food"
+                    name="otherDiets" 
+                    value={props.info.diet.otherDiets}
+                    onChange={props.handleChangeCheckBox.bind(props.this)} 
+                    readOnly={props.submitted}
+                    rows="3" 
+                    placeholder="Please inform us of any dietary 
+                    restrictions including allergies..."></textarea> : null}
         </div>
         <div className="form-group">
           <label htmlFor="accom">Accomodations</label>
@@ -117,6 +164,7 @@ const InfoForm = (props) => {
                     name="accom"
                     value={props.info.accom}
                     onChange={props.handleChange.bind(props.this)} 
+                    readOnly={props.submitted}
                     rows="3" 
                     placeholder="Please inform us of any accomodations you 
                     will require..."></textarea>
@@ -129,6 +177,10 @@ const InfoForm = (props) => {
       {!props.displayEmail ? <button type="button" className="btn btn-submit"
               onClick={props.logout.bind(props.this)}>
         Logout
+      </button> : null}
+      {(!props.displayEmail && props.submitted) ? <button type="button" className="btn btn-submit"
+              onClick={props.setSubmittedFalse.bind(props.this)}>
+        Cancel
       </button> : null}
     </div>
   )

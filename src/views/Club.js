@@ -39,7 +39,6 @@ class Club extends React.Component {
     await this.setState({ loading: true });
     try {
       const result = await registration.registerClub(this.state.info);
-      console.log("result", result);
       await this.setState({ loading: false, result: result.data });
     } catch (error) {
       await this.setState({ loading: false, result: "There was an error with our server. Please try again later." });

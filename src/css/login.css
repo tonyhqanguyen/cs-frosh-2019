@@ -13,3 +13,7 @@
 .btn-submit {
   font-weight: bold;
 }
+
+.loading-row-login {
+  height: auto;
+}

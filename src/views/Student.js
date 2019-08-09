@@ -12,7 +12,13 @@ class Student extends React.Component {
       email: "",
       phone: "",
       shirt: "",
-      diet: "",
+      diet: {
+        vegetarian: false,
+        vegan: false,
+        glutenFree: false,
+        other: false,
+        otherDiets: ""
+      },
       accom: ""
     },
     submitted: false,
@@ -26,18 +32,13 @@ class Student extends React.Component {
     let data;
     if (this.state.info.diet !== "" && this.state.info.accom !== "") {
       data = this.state.info;
-    } else if (this.state.info.diet === "" && this.state.info.accom !== "") {
-      data = { ...this.state.info, diet: "None" };
-    } else if (this.state.info.accom === "" && this.state.info.diet !== "") {
+    }  else if (this.state.info.accom === "") {
       data = { ...this.state.info, accom: "None" };
-    } else {
-      data = { ...this.state.info, diet: "None", accom: "None" };
     }
 
     await this.setState({ loading: true });
     const resp = await registration.registerStudent(data);
     await this.setState({ loading: false });
-    console.log("resp", resp);
 
     if (resp.data === "Registration email sent successfully!") {
       await this.setState({ registered: true, problem: false, problemMessage: "" })
@@ -50,6 +51,16 @@ class Student extends React.Component {
     await this.setState({ info: { ...this.state.info, [event.target.name]: event.target.value } });
   }
 
+  handleChangeCheckBox = async (event) => {
+    await this.setState({ 
+      info: { 
+        ...this.state.info, diet: { 
+          ...this.state.info.diet, [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value
+        }
+      }
+    });
+  }
+
   setSubmittedTrue = async (e) => {
     e.preventDefault();
     if (this.state.info.name === "" || this.state.info.email === "" || this.state.info.phone === "" || this.state.shirt === "") {
@@ -57,7 +68,7 @@ class Student extends React.Component {
     } else if (isNaN(this.state.info.phone)) {
       await this.setState({ problem: true, problemMessage: "Your phone number must be numeric." });
     } else {
-      this.setState({ problem: false, problemMessage: "", submitted: true});
+      this.setState({ problem: false, problemMessage: "", submitted: true });
     }
   }
 
@@ -74,17 +85,20 @@ class Student extends React.Component {
           </div>
           <div className="col-8 align-items-center d-flex">
             <div className="card">
-            {this.state.problem ? 
-              <div className="alert alert-danger" role="alert">
-                {this.state.problemMessage}
-              </div> : null}
-              <InfoForm info={this.state.info}
-                          this={this}
-                          setSubmittedTrue={this.setSubmittedTrue}
-                          handleChange={this.handleChange}
-                          displayEmail={true}
-                          loading={this.state.loading}
-              />
+              <div className="card-body">
+                {this.state.problem ? 
+                <div className="alert alert-danger alert-left" role="alert">
+                  {this.state.problemMessage}
+                </div> : null}
+                <InfoForm info={this.state.info}
+                            this={this}
+                            setSubmittedTrue={this.setSubmittedTrue}
+                            handleChange={this.handleChange}
+                            displayEmail={true}
+                            handleChangeCheckBox={this.handleChangeCheckBox}
+                            loading={this.state.loading}
+                />
+              </div>
             </div>
           </div>
           <div className="col-2">

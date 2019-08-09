@@ -4,7 +4,6 @@ import { api } from './api';
 const studentAddress = "https://frozen-brushlands-54091.herokuapp.com/getStudents";
 
 export const getStudents = async (query) => {
-  console.log("getting students");
   const resp = await api("POST", studentAddress, query);
   return resp;
 }

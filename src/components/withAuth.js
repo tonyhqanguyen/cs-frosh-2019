@@ -37,19 +37,24 @@ const withAuth = (ComponentToProtect) => {
           throw error;
         }
       } catch (error) {
-        console.log(error);
         this.setState({ loading: false, redirect: true });
       }
     }
 
 
     render() {
-      const { loading, redirect } = this.state;
+      const loading = this.state.loading;
+      const redirect = this.state.redirect;
       if (loading) {
-        return null;
+        return (
+          <div className="row d-flex justify-content-center loading-row">
+            <div className="spinner-grow loading text-success" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )
       }
       if (redirect) {
-        console.log("redirect")
         return <Redirect to="/login" />;
       }
       return (
