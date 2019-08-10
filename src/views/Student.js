@@ -42,7 +42,7 @@ class Student extends React.Component {
 
     if (resp.data === "Registration email sent successfully!") {
       await this.setState({ registered: true, problem: false, problemMessage: "" })
-    } else if (resp.data === "Email already exists.") {
+    } else {
       await this.setState({ registered: false, problem: true, problemMessage: resp.data })
     }
   }

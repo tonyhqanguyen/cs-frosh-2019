@@ -128,9 +128,11 @@ class Admin extends React.Component {
                     <td>{student.phone}</td>
                     <td>{sizes[student.shirt]}</td>
                     <td>{student.diet.vegetarian ? "vegetarian" : ""} 
-                        {student.diet.vegan ? ", vegan" : ""}
+                        {student.diet.vegan ? `${student.diet.vegetarian ? ', vegan' : 'vegan'}` : ""}
                         {student.diet.glutenFree ? `${(student.diet.vegetarian || student.diet.vegan) ? ', gluten-free' : 'gluten-free'}` : ""} 
-                        {student.diet.other ? `; others: ${student.diet.otherDiets}` : ""}</td>
+                        {student.diet.other ? `; others: ${student.diet.otherDiets}` : ""}
+                        {!(student.diet.vegetarian || student.diet.vegan || student.diet.glutenFree || student.diet.other) ? "None" : null}
+                    </td>
                     <td>{student.accom}</td>
                   </tr>
                 )
