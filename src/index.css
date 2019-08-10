@@ -112,3 +112,7 @@ code {
 .bold-font {
   font-weight: bold;
 }
+
+.h-94 {
+  height: 94% !important;
+}

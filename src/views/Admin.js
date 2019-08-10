@@ -104,12 +104,12 @@ class Admin extends React.Component {
     }
 
     const studentsTable = (
-    <div className="card">
+    <div className="card h-94">
       <div className="table-responsive">
         <table className="table table-bordered table-fixed admin-table">
           <thead>
             <tr>
-              <th className="w-m-90 col-xs-1">#</th>
+              <th className="col-xs-1">#</th>
               <th className="col-xs-2">Full Name</th>
               <th className="col-xs-2">Email Address</th>
               <th className="col-xs-2">Phone Number</th>
@@ -148,7 +148,7 @@ class Admin extends React.Component {
 
     const clubsTable = (
       <div className="table-responsive">
-        <table className="table admin-table">
+        <table className="table table-bordered table-fixed admin-table">
           <thead>
             <tr>
               <th scope="col">#</th>
