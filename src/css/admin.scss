@@ -35,7 +35,7 @@
 }
 
 .admin-table {
-  color: white;
+  color: black;
   font-size: 20px;
 }
 
@@ -55,4 +55,34 @@ th, td {
 
 .admin-row, .loading-row {
   height: 100vh;
+}
+
+.scroll {
+  overflow: auto;
+}
+
+.table-fixed {
+  tbody {
+    overflow: auto;
+    height: 800px;
+  }
+
+  th {
+    background-color: lightblue;
+  }
+
+  thead, tbody {
+    th, td {
+      border-color: black;
+    }
+  }
+}
+
+
+.white-bg {
+  background-color: white;
+}
+
+.w-m-90 {
+  width: 90px !important;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as admin from '../api/admin-api';
 import { Redirect } from 'react-router-dom';
-import '../css/admin.css';
+import '../css/admin.scss';
 
 
 const sizes = {
@@ -104,17 +104,18 @@ class Admin extends React.Component {
     }
 
     const studentsTable = (
+    <div className="card">
       <div className="table-responsive">
-        <table className="table admin-table">
+        <table className="table table-bordered table-fixed admin-table">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Full Name</th>
-              <th scope="col">Email Address</th>
-              <th scope="col">Phone Number</th>
-              <th scope="col">Shirt Size</th>
-              <th scope="col">Dietary Restriction(s)</th>
-              <th scope="col">Accomodations Required</th>
+              <th className="w-m-90 col-xs-1">#</th>
+              <th className="col-xs-2">Full Name</th>
+              <th className="col-xs-2">Email Address</th>
+              <th className="col-xs-2">Phone Number</th>
+              <th className="col-xs-1">Shirt Size</th>
+              <th className="col-xs-2">Dietary Restriction(s)</th>
+              <th className="col-xs-2 no-border-right">Accomodations Required</th>
             </tr>
           </thead>
           <tbody>
@@ -122,18 +123,18 @@ class Admin extends React.Component {
               this.state.students.map((student, i) => {
                 return (
                   <tr key={i}>
-                    <th scope="row">{i + 1}</th>
-                    <td>{student.name}</td>
-                    <td>{student.email}</td>
-                    <td>{student.phone}</td>
-                    <td>{sizes[student.shirt]}</td>
-                    <td>{student.diet.vegetarian ? "vegetarian" : ""} 
+                    <th className="col-xs-1">{i + 1}</th>
+                    <td className="col-xs-2">{student.name}</td>
+                    <td className="col-xs-2">{student.email}</td>
+                    <td className="col-xs-2">{student.phone}</td>
+                    <td className="col-xs-1">{sizes[student.shirt]}</td>
+                    <td className="col-xs-2">{student.diet.vegetarian ? "vegetarian" : ""} 
                         {student.diet.vegan ? `${student.diet.vegetarian ? ', vegan' : 'vegan'}` : ""}
                         {student.diet.glutenFree ? `${(student.diet.vegetarian || student.diet.vegan) ? ', gluten-free' : 'gluten-free'}` : ""} 
-                        {student.diet.other ? `; others: ${student.diet.otherDiets}` : ""}
+                        {student.diet.other ? `${(student.diet.vegetarian || student.diet.vegan || student.diet.glutenFree) ? '; ' : ''}` + `others: ${student.diet.otherDiets}` : ""}
                         {!(student.diet.vegetarian || student.diet.vegan || student.diet.glutenFree || student.diet.other) ? "None" : null}
                     </td>
-                    <td>{student.accom}</td>
+                    <td className="col-xs-2">{student.accom}</td>
                   </tr>
                 )
               })
@@ -141,6 +142,8 @@ class Admin extends React.Component {
           </tbody>
         </table>
       </div>
+    </div>
+      
     )
 
     const clubsTable = (
@@ -191,7 +194,7 @@ class Admin extends React.Component {
     }
 
     return (
-      <div className="container">
+      <div className="container white-bg">
         <div className="row admin-row">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <span className="navbar-brand">Administration</span>
