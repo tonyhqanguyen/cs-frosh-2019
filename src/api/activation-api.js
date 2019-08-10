@@ -1,7 +1,7 @@
 import { api } from './api';
 
 
-const activateAddress = "https://frozen-brushlands-54091.herokuapp.com//activate";
+const activateAddress = "https://frozen-brushlands-54091.herokuapp.com/activate";
 
 export const activateAccount = async (info) => {
   const resp = await api("POST", activateAddress, info);
