@@ -1,28 +1,28 @@
 import { api } from './api';
 
 
-const studentAddress = "https:/frozen-brushlands-54091.herokuapp.com/getStudents";
+const studentAddress = "https://frozen-brushlands-54091.herokuapp.com/getStudents";
 
 export const getStudents = async (query) => {
   const resp = await api("POST", studentAddress, query);
   return resp;
 }
 
-const searchStudentAddress = "https:/frozen-brushlands-54091.herokuapp.com/searchStudents";
+const searchStudentAddress = "https://frozen-brushlands-54091.herokuapp.com/searchStudents";
 
 export const searchStudents = async (query) => {
   const resp = await api("POST", searchStudentAddress, query);
   return resp;
 }
 
-const unconfirmedStudentAddress = "https:/frozen-brushlands-54091.herokuapp.com/getUnconfirmedStudents";
+const unconfirmedStudentAddress = "https://frozen-brushlands-54091.herokuapp.com/getUnconfirmedStudents";
 
 export const getUnconfirmedStudents = async (query) => {
   const resp = await api("POST", unconfirmedStudentAddress, query);
   return resp;
 }
 
-const searchUnconfirmedStudentAddress = "https:/frozen-brushlands-54091.herokuapp.com/searchUnconfirmedStudents";
+const searchUnconfirmedStudentAddress = "https://frozen-brushlands-54091.herokuapp.com/searchUnconfirmedStudents";
 
 export const searchUnconfirmedStudents = async (query) => {
   const resp = await api("POST", searchUnconfirmedStudentAddress, query);
@@ -30,7 +30,7 @@ export const searchUnconfirmedStudents = async (query) => {
 }
 
 
-const clubAddress = "https:/frozen-brushlands-54091.herokuapp.com/getClubs";
+const clubAddress = "https://frozen-brushlands-54091.herokuapp.com/getClubs";
 
 export const getClubs = async (query) => {
   const resp = await api("POST", clubAddress, query);
@@ -38,7 +38,7 @@ export const getClubs = async (query) => {
 }
 
 
-const searchClubAddress = "https:/frozen-brushlands-54091.herokuapp.com/searchClubs";
+const searchClubAddress = "https://frozen-brushlands-54091.herokuapp.com/searchClubs";
 
 export const searchClubs = async (query) => {
   const resp = await api("POST", searchClubAddress, query);
