@@ -22,15 +22,17 @@ class Admin extends React.Component {
       navActive: "students",
       loading: false,
       cacheStudents: [],
+      cacheUnconfirmed: [],
       cacheClubs: [],
       students: [],
+      unconfirmed: [],
       clubs: [],
       keyword: "",
       searchActive: false
     }
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     await this.setState({ loading: true });
     const students = await admin.getStudents({ token: this.state.token });
     await this.setState({ students: students.data, cacheStudents: students.data, loading: false });
@@ -64,20 +66,45 @@ class Admin extends React.Component {
     }
   }
 
+  setNavUnconfirmed = async () => {
+    await this.setState({ navActive: "unconfirmed", loading: true });
+    if (this.state.unconfirmed.length === 0) {
+      if (this.state.cacheUnconfirmed.length > 0) {
+        this.setState({ unconfirmed: this.state.cacheUnconfirmed, loading: false });
+        return;
+      }
+      const unconfirmed = await admin.getUnconfirmedStudents({ token: this.state.token });
+      await this.setState({ unconfirmed: unconfirmed.data, cacheUnconfirmed: unconfirmed.data, loading: false });
+    } else {
+      this.setState({ loading: false });
+    }
+  }
+
   submitSearch = async (e) => {
     e.preventDefault();
     if (this.state.keyword !== "") {
       this.setState({ loading: true });
-      let query = this.state.navActive === "students" ? { students: this.state.cacheStudents } : { clubs: this.state.cacheClubs };
-      query = { ...query, keyword: this.state.keyword, token: this.state.token };
-      const search = this.state.navActive === "students" ? admin.searchStudents : admin.searchClubs;
+      let query = { token: this.state.token, keyword: this.state.keyword };
+      let search;
+      if (this.state.navActive === "students") {
+        query = { ...query, students: this.state.cacheStudents };
+        search = admin.searchStudents;
+      } else if (this.state.navActive === "clubs") {
+        query = { ...query, clubs: this.state.cacheClubs };
+        search = admin.searchClubs;
+      } else {
+        query = { ...query, unconfirmed: this.state.unconfirmed };
+        search = admin.searchUnconfirmedStudents;
+      }
 
       try {
         const results = await search(query);
         if (this.state.navActive === "students") {
           await this.setState({ loading: false, students: results.data, searchActive: true });
-        } else {
+        } else if (this.state.navActive === "clubs") {
           await this.setState({ loading: false, clubs: results.data, searchActive: true });
+        } else {
+          await this.setState({ loading: false, unconfirmed: results.data, searchActive: true });
         }
       } catch (error) {
         // handle error
@@ -86,11 +113,7 @@ class Admin extends React.Component {
   }
 
   clearSearch = async () => {
-    if (this.state.navActive === "students") {
-      await this.setState({ students: this.state.cacheStudents, searchActive: false, keyword: "" })
-    } else {
-      await this.setState({ clubs: this.state.cacheClubs, searchActive: false, keyword: "" })
-    }
+      await this.setState({ students: this.state.cacheStudents, clubs: this.state.cacheClubs, unconfirmed: this.state.cacheUnconfirmed, searchActive: false, keyword: "" });
   }
 
   logout = () => {
@@ -99,6 +122,7 @@ class Admin extends React.Component {
   }
 
   render() {
+    let students = this.state.navActive === "students" ? this.state.students : this.state.unconfirmed;
     if (this.state.redirectStudent) {
       return <Redirect to="/profile"/>
     }
@@ -120,7 +144,7 @@ class Admin extends React.Component {
           </thead>
           <tbody>
             {
-              this.state.students.map((student, i) => {
+              students.map((student, i) => {
                 return (
                   <tr key={i}>
                     <th className="col-xs-1">{i + 1}</th>
@@ -131,7 +155,7 @@ class Admin extends React.Component {
                     <td className="col-xs-2">{student.diet.vegetarian ? "vegetarian" : ""} 
                         {student.diet.vegan ? `${student.diet.vegetarian ? ', vegan' : 'vegan'}` : ""}
                         {student.diet.glutenFree ? `${(student.diet.vegetarian || student.diet.vegan) ? ', gluten-free' : 'gluten-free'}` : ""} 
-                        {student.diet.other ? `${(student.diet.vegetarian || student.diet.vegan || student.diet.glutenFree) ? '; ' : ''}` + `others: ${student.diet.otherDiets}` : ""}
+                        {student.diet.other ? `${(student.diet.vegetarian || student.diet.vegan || student.diet.glutenFree) ? '; ' : ''}` + `others: ${student.diet.otherDiets.toLowerCase()}` : ""}
                         {!(student.diet.vegetarian || student.diet.vegan || student.diet.glutenFree || student.diet.other) ? "None" : null}
                     </td>
                     <td className="col-xs-2">{student.accom}</td>
@@ -142,8 +166,7 @@ class Admin extends React.Component {
           </tbody>
         </table>
       </div>
-    </div>
-      
+    </div>  
     )
 
     const clubsTable = (
@@ -187,7 +210,7 @@ class Admin extends React.Component {
 
     if (this.state.loading) {
       display = loading;
-    } else if (this.state.navActive === "students") {
+    } else if (this.state.navActive === "students" || this.state.navActive === "unconfirmed") {
       display = studentsTable;
     } else if (this.state.navActive === "clubs") {
       display = clubsTable;
@@ -208,6 +231,12 @@ class Admin extends React.Component {
                     name="students"
                     >
                   <span className="nav-link nav-button" onClick={this.setNavStudents.bind(this)}>Students 
+                  </span>
+                </li>
+                <li className={this.state.navActive === "unconfirmed" ? "nav-item active" : "nav-item"} 
+                    name="unconfirmed"
+                    >
+                  <span className="nav-link nav-button" onClick={this.setNavUnconfirmed.bind(this)}>Unconfirmed 
                   </span>
                 </li>
                 <li className={this.state.navActive === "clubs" ? "nav-item active" : "nav-item"} 
