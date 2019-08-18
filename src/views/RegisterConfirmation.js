@@ -95,6 +95,28 @@ const RegisterConfirmation = (props) => {
       </div>
   )
 
+  const deadlinePassed = (
+    <div className="container">
+        <div className="row d-flex justify-content-center">
+          <div className="col-2">
+            <ParticleNetwork id="particles" classes="particles-network"/>
+          </div>
+          <div className="col-8 align-items-center d-flex">
+            <div className="card">
+              <div className="card-body">
+                <p className="success">
+                  Registration has closed. If you wish to be considered for the orientation, please send us an email at
+                  csorientation2019@gmail.com explaining your situation.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-2">
+          </div>
+        </div>
+      </div>
+  )
+
   const loading = (
     <div className="container">
         <div className="row d-flex justify-content-center">
@@ -126,6 +148,8 @@ const RegisterConfirmation = (props) => {
     renderElement = success;
   } else if (!props.success.registered && props.success.problem && props.success.problemMessage === "Email already exists.") {
     renderElement = emailTaken;
+  } else if (!props.success.registered && props.success.problem && props.success.problemMessage === "Registration has closed") {
+    renderElement = deadlinePassed;
   } else if (!props.success.registered && !props.success.problem) {
     renderElement = confirmation;
   }
