@@ -86,7 +86,9 @@ class Student extends React.Component {
           <div className="col-8 align-items-center d-flex">
             <div className="card">
               <div className="card-body">
-                {this.state.problem ? 
+                <h1 className="bold-font">Registration has closed. If you wish to be considered for the Computer Science Orientation 2019, please
+                email us at csorientation2019@gmail.com and explain your situation.</h1>
+                {/* {this.state.problem ? 
                 <div className="alert alert-danger alert-left" role="alert">
                   {this.state.problemMessage}
                 </div> : null}
@@ -97,7 +99,7 @@ class Student extends React.Component {
                             displayEmail={true}
                             handleChangeCheckBox={this.handleChangeCheckBox}
                             loading={this.state.loading}
-                />
+                /> */}
               </div>
             </div>
           </div>
