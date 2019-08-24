@@ -30,8 +30,6 @@ class Information extends React.Component {
     return (
       <div className="container scroll info-container">
         <div className="row full-screen">
-
-          // Registration info
           <div class="modal fade sched-modal" id="registration" tabindex="-1" role="dialog" aria-labelledby="registraionLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -49,7 +47,6 @@ class Information extends React.Component {
             </div>
           </div>
 
-          // Opening Ceremony info
           <div class="modal fade sched-modal" id="opening" tabindex="-1" role="dialog" aria-labelledby="openingLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -66,7 +63,6 @@ class Information extends React.Component {
             </div>
           </div>
 
-          // Professors Panel info
           <div class="modal fade sched-modal" id="prof" tabindex="-1" role="dialog" aria-labelledby="profLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -84,7 +80,6 @@ class Information extends React.Component {
             </div>
           </div>
 
-          // Lunch and networking info
           <div class="modal fade sched-modal" id="club" tabindex="-1" role="dialog" aria-labelledby="clubLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -102,7 +97,6 @@ class Information extends React.Component {
             </div>
           </div>
 
-          // Games info
           <div class="modal fade sched-modal" id="games" tabindex="-1" role="dialog" aria-labelledby="gamesLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -120,7 +114,6 @@ class Information extends React.Component {
             </div>
           </div>
 
-          // Students panel info
           <div class="modal fade sched-modal" id="students" tabindex="-1" role="dialog" aria-labelledby="studentsLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -138,7 +131,6 @@ class Information extends React.Component {
             </div>
           </div>
 
-          // Closing ceremony info
           <div class="modal fade sched-modal" id="closing" tabindex="-1" role="dialog" aria-labelledby="closingLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
