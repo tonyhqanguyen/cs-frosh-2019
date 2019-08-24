@@ -19,3 +19,20 @@
   font-size: calc(13px + 1vmin);
   font-weight: bold;
 }
+
+.schedule-table {
+  color: white;
+  font-weight: bold;
+  tr:hover, th:hover, td:hover {
+    cursor: pointer;
+  }
+}
+
+.sched-modal {
+  text-align: left;
+  font-weight: 900;
+}
+
+.modal-title {
+  font-weight: 900;
+}
