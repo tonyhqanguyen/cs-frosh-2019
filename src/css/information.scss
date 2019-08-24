@@ -23,8 +23,11 @@
 .schedule-table {
   color: white;
   font-weight: bold;
-  tr:hover, th:hover, td:hover {
-    cursor: pointer;
+  tbody {
+    tr:hover, tr:active, tr:focus {
+      cursor: pointer;
+      color: seagreen;
+    }
   }
 }
 
