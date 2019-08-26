@@ -201,10 +201,12 @@ class Information extends React.Component {
               </table>
             </div>
             <br/>
-            <h1 className="title">Location and instructions</h1>
+            <h1 className="title">Location, time and instructions</h1>
             <p className="about">
-              The event will start at the Bahen Centre for Information Technology located at <u>40 St George St, Toronto, ON M5S 2E4.</u>
+              <u>Location</u>: Bahen Centre for Information Technology located at 40 St George St, Toronto, ON M5S 2E4.
               <br/>
+              <u>Time</u>: Saturday, September 7th, 2019 - from 10:30 AM - 4:30 PM
+              <br></br>
               Please make note of the following things:
                 <ul>
                   <li>You need to bring a piece of ID so we can verify your identification on the day of the event.</li>
