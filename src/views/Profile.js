@@ -23,7 +23,10 @@ class Profile extends React.Component {
         name: this.props.data.name,
         phone: this.props.data.phone,
         shirt: this.props.data.shirt
-      }
+      },
+      checkInRequest: false,
+      checkedIn: this.props.data.checkedIn,
+      showCheckInSuccess: false
     }
   }
 
@@ -35,7 +38,7 @@ class Profile extends React.Component {
       try {
         const result = await profile.updateInfoStudent({ token: this.state.token, accountEmail: this.state.email, info: this.state.info });
         if (result.status === 200) {
-          await this.setState({ loading: false, submitted: false, success: true });
+          await this.setState({ loading: false, submitted: false, success: true, problem: false, problemMessage: "" });
         } else if (result.status === 401) {
           await this.setState({ loading: false, submitted: false, problem: true, problemMessage: "You can't change someone else's profile." });
         } else {
@@ -70,6 +73,16 @@ class Profile extends React.Component {
     this.props.history.push("/");
   }
 
+  checkIn = async () => {
+    try {
+      await this.setState({ loading: true });
+      await profile.checkInStudent({ token: this.state.token, accountEmail: this.state.email });
+      this.setState({ loading: false, checkInRequest: false, checkedIn: true, showCheckInSuccess: true, problem: false, problemMessage: "" });
+    } catch (error) {
+      await this.setState({ loading: false, problem: true, problemMessage: error.data });
+    }
+  }
+
   render() {
     if (this.state.redirectAdmin) {
       return <Redirect to="/admin"/>
@@ -77,55 +90,85 @@ class Profile extends React.Component {
     
     return (
       <div className="container">
-      <div className="row d-flex justify-content-center">
-        <div className="col-2">
-          <ParticleNetwork id="particles" classes="particles-network"/>
-        </div>
-        <div className="col-8 justify-content-center align-items-center d-flex">
-          <div className="card profile-card">
-            <div className="card-body">
-              {this.state.submitted ? 
-              <div className="alert alert-info alert-left" role="alert">
-                Please ensure you have entered everythingcorrectly and click Update again to confirm your request.
-              </div> : null
-              }
-              {this.state.problem ? 
-              <div className="alert alert-danger alert-left" role="alert">
-                {this.state.problemMessage}
-              </div> : null
-              }
-              {this.state.success ? 
-              <div className="alert alert-success alert-dismissible fade show alert-left" role="alert">
-                Your information has been updated successfully!.
-              <button type="button" className="close" aria-label="Close" onClick={async () => {this.setState({ success: false })}}>
+        <div class="modal fade sched-modal" id="confirmCheckIn" tabindex="-1" role="dialog" aria-labelledby="confirmCheckIn" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmCheckIn">Check-in Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
-              </button>
-              </div> : null
-              }
-              {this.state.loading ? 
-              <div className="row d-flex justify-content-center loading-row">
-               <div className="spinner-grow loading text-success" role="status">
-                 <span className="sr-only">Loading...</span>
-               </div>
-              </div> : null
-              }
-              <InfoForm info={this.state.info}
-                          this={this}
-                          setSubmittedTrue={this.setSubmittedTrue}
-                          setSubmittedFalse={this.setSubmittedFalse}
-                          handleChange={this.handleChange}
-                          handleChangeCheckBox={this.handleChangeCheckBox}
-                          displayEmail={false}
-                          logout={this.logout}
-                          submitted={this.state.submitted}
-                          />
+                </button>
+              </div>
+              <div class="modal-body">
+                You are about to check-in to the Computer Science Orientation 2019 at the University of Toronto, please click the 
+                'Confirm' button below to confirm!
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success bold-font" data-dismiss="modal" onClick={this.checkIn.bind(this)}>Confirm</button>
+              </div>
             </div>
           </div>
         </div>
-        <div className="col-2">
+        <div className="row d-flex justify-content-center">
+          <div className="col-2">
+            <ParticleNetwork id="particles" classes="particles-network"/>
+          </div>
+          <div className="col-8 justify-content-center align-items-center d-flex">
+            <div className="card profile-card">
+              <div className="card-body">
+                {this.state.checkedIn && !this.state.showCheckInSuccess ? 
+                <p className="alert-left bold-900">You have checked-in with the Computer Science Orientation 2019!</p> : null}
+                {this.state.submitted ? 
+                <div className="alert alert-info alert-left" role="alert">
+                  Please ensure you have entered everythingcorrectly and click Update again to confirm your request.
+                </div> : null
+                }
+                {this.state.problem ? 
+                <div className="alert alert-danger alert-left" role="alert">
+                  {this.state.problemMessage}
+                </div> : null
+                }
+                {this.state.success ? 
+                <div className="alert alert-success alert-dismissible fade show alert-left" role="alert">
+                  Your information has been updated successfully!.
+                <button type="button" className="close" aria-label="Close" onClick={async () => {this.setState({ success: false })}}>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div> : null
+                }
+                {this.state.showCheckInSuccess ? 
+                <div className="alert alert-success alert-dismissible fade show alert-left" role="alert">
+                  You have successfully checked-in with the Computer Science Orientation 2019!
+                <button type="button" className="close" aria-label="Close" onClick={async () => {this.setState({ showCheckInSuccess: false })}}>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div> : null
+                }
+                {this.state.loading ? 
+                <div className="row d-flex justify-content-center loading-row">
+                <div className="spinner-grow loading text-success" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+                </div> : null
+                }
+                <InfoForm info={this.state.info}
+                            this={this}
+                            setSubmittedTrue={this.setSubmittedTrue}
+                            setSubmittedFalse={this.setSubmittedFalse}
+                            handleChange={this.handleChange}
+                            handleChangeCheckBox={this.handleChangeCheckBox}
+                            displayEmail={false}
+                            logout={this.logout}
+                            submitted={this.state.submitted}
+                            checkedIn={this.state.checkedIn}
+                            />
+              </div>
+            </div>
+          </div>
+          <div className="col-2">
+          </div>
         </div>
       </div>
-    </div>
     )
   }
 }

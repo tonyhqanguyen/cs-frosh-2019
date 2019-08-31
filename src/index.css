@@ -125,3 +125,7 @@ code {
 .center {
   margin: 1vmin;
 }
+
+.bold-900 {
+  font-weight: 900;
+}
