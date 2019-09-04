@@ -7,6 +7,7 @@ import Buttons from "../components/button-group";
 
 
 class Home extends React.Component {
+	end = new Date("7 Sep 2019 10:30:00 EDT");
 	state = {
 		loadAnimation: true,
 		time: ""
@@ -46,7 +47,7 @@ class Home extends React.Component {
 	componentDidMount = async () => {
 		this.interval = setInterval(async () => {
 			const time = new Date();
-			await this.setState({ time: this.msToTime(1567866600000 - time.getTime()) });
+			await this.setState({ time: this.msToTime(this.end.getTime() - time.getTime()) });
 		}, 1000);
 	}
 
@@ -89,8 +90,8 @@ class Home extends React.Component {
 						<div className="col-10">
 							<div className="row text-row justify-content-center align-items-center d-flex">
 								<h1 className="countdown">
-									{chars.map(char => {
-										return <span>{char}</span>;
+									{chars.map((char, i) => {
+										return <span key={i}>{char}</span>;
 									})}
 								</h1>
 								<h1 className={classTitle}>
