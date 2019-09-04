@@ -72,10 +72,17 @@ th, td {
     background-color: lightblue;
   }
 
-  td {
-    background-color: beige;
+  .notCheckedIn {
+    td {
+      background-color: beige;
+    }
   }
 
+  .checkedIn {
+    td {
+      background-color: lightgreen;
+    }
+  }
   thead, tbody {
     th, td {
       border-color: black;

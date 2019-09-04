@@ -34,8 +34,10 @@ class Admin extends React.Component {
 
   componentDidMount = async () => {
     await this.setState({ loading: true });
-    const students = await admin.getStudents({ token: this.state.token });
-    await this.setState({ students: students.data, cacheStudents: students.data, loading: false });
+    this.interval = setInterval(async () => {
+      const students = await admin.getStudents({ token: this.state.token });
+      await this.setState({ students: students.data, cacheStudents: students.data, loading: false });
+    }, 1000);
   }
 
   setNavStudents = async () => {
@@ -146,7 +148,7 @@ class Admin extends React.Component {
             {
               students.map((student, i) => {
                 return (
-                  <tr key={i}>
+                  <tr key={i} className={student.checkedIn ? "checkedIn" : "notCheckedIn"}>
                     <th className="col-xs-1">{i + 1}</th>
                     <td className="col-xs-2">{student.name}</td>
                     <td className="col-xs-2">{student.email}</td>
