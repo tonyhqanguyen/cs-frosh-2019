@@ -170,31 +170,33 @@ class Admin extends React.Component {
     )
 
     const clubsTable = (
-      <div className="table-responsive">
-        <table className="table table-bordered table-fixed admin-table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Club Name</th>
-              <th scope="col">Email Address</th>
-              <th scope="col">Statement of Interest</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.clubs.map((club, i) => {
-                return (
-                  <tr key={i}>
-                    <th scope="row">{i + 1}</th>
-                    <td>{club.name}</td>
-                    <td>{club.email}</td>
-                    <td>{club.purpose}</td>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
+      <div className="card h-94">
+        <div className="table-responsive">
+          <table className="table table-bordered table-fixed admin-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Club Name</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Statement of Interest</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.state.clubs.map((club, i) => {
+                  return (
+                    <tr key={i}>
+                      <th scope="row">{i + 1}</th>
+                      <td>{club.name}</td>
+                      <td>{club.email}</td>
+                      <td>{club.purpose}</td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
     )
 

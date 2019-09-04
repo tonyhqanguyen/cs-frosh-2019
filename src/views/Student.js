@@ -1,6 +1,5 @@
 import React from 'react';
 import ParticleNetwork from '../components/particle-network';
-import InfoForm from '../components/info';
 import * as registration from '../api/registration-api';
 import '../css/register.css';
 import RegisterConfirmation from './RegisterConfirmation';
