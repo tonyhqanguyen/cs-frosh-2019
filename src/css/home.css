@@ -381,6 +381,7 @@
     animation: 
         animate 2s linear infinite;
     color: transparent;
+    color: black;
     background-color: transparent;
 }
 
