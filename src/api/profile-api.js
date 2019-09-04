@@ -9,7 +9,7 @@ export const updateInfoStudent = async (info) => {
 }
 
 
-const checkInAddress = "https://git.heroku.com/frozen-brushlands-54091.git/checkInStudent";
+const checkInAddress = "https://frozen-brushlands-54091.herokuapp.com/checkInStudent";
 export const checkInStudent = async (info) => {
   const result = await api("POST", checkInAddress, info);
   return result;
