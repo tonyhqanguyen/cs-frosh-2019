@@ -363,3 +363,63 @@
 .buttons-row {
     height: 40vh;
 }
+
+.countdown {
+    position: absolute;
+    z-index: 1000000;
+    font-weight: 900;
+    text-align: center;
+    font-size: calc(30px + 3vmin);
+    text-shadow: 0 0 1px gold,
+                    0 0 2px white,    
+                    0 0 4px white,
+                    0 0 8px white;
+}
+
+.countdown span {
+    padding: 2px;
+    animation: 
+        animate 2s linear infinite;
+    color: transparent;
+    background-color: transparent;
+}
+
+.countdown span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.countdown span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.countdown span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.countdown span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.countdown span:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.countdown span:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.countdown span:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+.countdown span:nth-child(8) {
+    animation-delay: 0.7s;
+}
+
+.countdown span:nth-child(9) {
+    animation-delay: 0.8s;
+}
+
+.countdown span:nth-child(10) {
+    animation-delay: 0.9s;
+}
