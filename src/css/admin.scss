@@ -72,10 +72,17 @@ th, td {
     background-color: lightblue;
   }
 
-  td {
-    background-color: beige;
+  .notCheckedIn, .notAnswered {
+    td {
+      background-color: beige;
+    }
   }
 
+  .checkedIn, .answered {
+    td {
+      background-color: lightgreen;
+    }
+  }
   thead, tbody {
     th, td {
       border-color: black;
@@ -89,4 +96,8 @@ th, td {
 
 .w-m-90 {
   width: 90px !important;
+}
+
+.check-question {
+  text-align: center;
 }

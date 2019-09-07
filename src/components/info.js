@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+
 
 const InfoForm = (props) => {
   return (
@@ -180,6 +182,23 @@ const InfoForm = (props) => {
               onClick={props.logout.bind(props.this)}>
         Logout
       </button> : null}
+      {!props.displayEmail && !props.checkedIn ? 
+        <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#confirmCheckIn">
+          Check-in
+        </button> : null}
+      {!props.displayEmail ? 
+      <Link to={{
+        pathname: "/questions",
+        state: {
+          email: props.this.state.email,
+          name: props.info.name
+        }
+      }}>
+        <button type="button" className="btn btn-submit">
+          Ask questions
+        </button>
+      </Link>
+       : null}
       {(!props.displayEmail && props.submitted) ? <button type="button" className="btn btn-submit"
               onClick={props.setSubmittedFalse.bind(props.this)}>
         Cancel
@@ -188,4 +207,4 @@ const InfoForm = (props) => {
   )
 }
 
-export default InfoForm;
+export default withRouter(InfoForm);

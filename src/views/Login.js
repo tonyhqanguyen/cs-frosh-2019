@@ -4,16 +4,19 @@ import * as login from '../api/login-api';
 import '../css/login.css';
 
 class Login extends React.Component {
-  state = {
-    info: {
-      email: "",
-      password: ""
-    },
-    loading: false,
-    problem: false,
-    problemMessage: "",
-    recoverRequested: false,
-    recoverRequestSuccess: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      info: {
+        email: "",
+        password: ""
+      },
+      loading: false,
+      problem: false,
+      problemMessage: "",
+      recoverRequested: false,
+      recoverRequestSuccess: false
+    }
   }
 
   login = async (e) => {
@@ -29,6 +32,7 @@ class Login extends React.Component {
       await this.setState({ loading: false });
       document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       document.cookie = `token=${result.data.token}`;
+      console.log(this.props.history);
       this.props.history.push(result.data.role === "student" ? '/profile' : '/admin');
     } catch (error) {
       if (error.status === 401) {

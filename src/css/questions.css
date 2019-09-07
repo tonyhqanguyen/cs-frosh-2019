@@ -1,0 +1,14 @@
+.questions-instructions {
+  font-weight: bold;
+  font-size: calc(20px + 3vmin);
+}
+
+.questions-button {
+  border-color: black;
+  font-weight: bold;
+}
+
+.questions-button:hover, .questions-button:active, .questions-button:focus {
+  background-color: black;
+  color: white;
+}
