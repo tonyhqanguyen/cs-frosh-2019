@@ -7,8 +7,10 @@ import Buttons from "../components/button-group";
 
 
 class Home extends React.Component {
+	end = new Date("7 Sep 2019 10:30:00 EDT");
 	state = {
-		loadAnimation: true
+		loadAnimation: true,
+		time: ""
 	}
 
 	stopAnimation = async () => {
@@ -42,6 +44,13 @@ class Home extends React.Component {
     return null;
 	}	
 
+	componentDidMount = async () => {
+		this.interval = setInterval(async () => {
+			const time = new Date();
+			await this.setState({ time: this.msToTime(this.end.getTime() - time.getTime()) });
+		}, 1000);
+	}
+
 	componentWillMount = () => {
 		if (!this.readCookie("animation-loaded")) {
 			this.setState({ loadAnimation: true })
@@ -51,7 +60,25 @@ class Home extends React.Component {
 		}
 	}
 
+	msToTime = (duration) => {
+    let seconds = Math.floor((duration / 1000) % 60),
+      minutes = Math.floor((duration / (1000 * 60)) % 60),
+			hours = Math.floor((duration / (1000 * 60 * 60)) % 24),
+			days = Math.floor((duration / (1000 * 60 * 60 * 24)));
+  
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+		seconds = (seconds < 10) ? "0" + seconds : seconds;
+  
+    return days + ":" + hours + ":" + minutes + ":" + seconds;
+	}
+	
 	render() {
+		let chars = [];
+		for (let i = 0; i < this.state.time.length; i++) {
+			chars.push(this.state.time[i]);
+		}
+
 		let classTitle = this.state.loadAnimation ? "welcome-title-animate" : "welcome-title";
 		return (
 			<div className="container">
@@ -62,6 +89,11 @@ class Home extends React.Component {
 						</div>
 						<div className="col-10">
 							<div className="row text-row justify-content-center align-items-center d-flex">
+								<h1 className="countdown">
+									{chars.map((char, i) => {
+										return <span key={i}>{char}</span>;
+									})}
+								</h1>
 								<h1 className={classTitle}>
 									<span>C</span>
 									<span>o</span>

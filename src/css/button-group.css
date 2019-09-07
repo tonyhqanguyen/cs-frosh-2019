@@ -23,7 +23,7 @@
   text-shadow: 1 1 1px gold,
                1 1 2px white,
                1 1 4px white;
-  font-weight: bold;
+  font-weight: 900;
 }
 
 .btn-in-group:hover, .btn-in-group:focus, .btn-in-group:not(:disabled):not(.disabled):active, 
