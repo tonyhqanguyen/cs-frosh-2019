@@ -1,5 +1,6 @@
 import React from 'react';
 import * as admin from '../api/admin-api';
+import * as questions from '../api/questions-api';
 import { Redirect } from 'react-router-dom';
 import '../css/admin.scss';
 
@@ -27,6 +28,7 @@ class Admin extends React.Component {
       students: [],
       unconfirmed: [],
       clubs: [],
+      questions: [],
       keyword: "",
       searchActive: false
     }
@@ -35,8 +37,16 @@ class Admin extends React.Component {
   componentDidMount = async () => {
     await this.setState({ loading: true });
     this.interval = setInterval(async () => {
-      const students = await admin.getStudents({ token: this.state.token });
-      await this.setState({ students: students.data, cacheStudents: students.data, loading: false });
+      if (this.state.navActive === "students") {
+        const students = await admin.getStudents({ token: this.state.token });
+        await this.setState({ students: students.data, cacheStudents: students.data, loading: false });
+      } else if (this.state.navActive === "unconfirmed") {
+        const unconfirmed = await admin.getUnconfirmedStudents({ token: this.state.token });
+        await this.setState({ unconfirmed: unconfirmed.data, cacheStudents: unconfirmed.data, loading: false });
+      } else if (this.state.navActive === "questions") {
+        const q = await questions.getQuestions({ token: this.state.token });
+        await this.setState({ questions: q.data, loading: false });
+      }
     }, 1000);
   }
 
@@ -82,6 +92,16 @@ class Admin extends React.Component {
     }
   }
 
+  setNavQuestions = async () => {
+    await this.setState({ navActive: "questions", loading: true });
+    if (this.state.questions.length === 0) {
+      const q = await questions.getQuestions({ token: this.state.token });
+      await this.setState({ questions: q.data, loading: false });
+    } else {
+      this.setState({ loading: false });
+    }
+  }
+
   submitSearch = async (e) => {
     e.preventDefault();
     if (this.state.keyword !== "") {
@@ -114,6 +134,14 @@ class Admin extends React.Component {
     }
   }
 
+  setQuestionAnswered = async (question, idx) => {
+    await questions.setAnswered({ token: this.state.token, question: question });
+    question.answered = true;
+    let newQuestions = [...this.state.questions];
+    newQuestions[idx] = question;
+    await this.setState({ questions: newQuestions });
+  }
+
   clearSearch = async () => {
       await this.setState({ students: this.state.cacheStudents, clubs: this.state.cacheClubs, unconfirmed: this.state.cacheUnconfirmed, searchActive: false, keyword: "" });
   }
@@ -126,7 +154,7 @@ class Admin extends React.Component {
   render() {
     let students = this.state.navActive === "students" ? this.state.students : this.state.unconfirmed;
     if (this.state.redirectStudent) {
-      return <Redirect to="/profile"/>
+      return <Redirect to="/profile"/>;
     }
 
     const studentsTable = (
@@ -172,25 +200,59 @@ class Admin extends React.Component {
     )
 
     const clubsTable = (
+      <div className="card h-94">
+        <div className="table-responsive">
+          <table className="table table-bordered table-fixed admin-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Club Name</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Statement of Interest</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.state.clubs.map((club, i) => {
+                  return (
+                    <tr className="notCheckedIn" key={i}>
+                      <th scope="row">{i + 1}</th>
+                      <td>{club.name}</td>
+                      <td>{club.email}</td>
+                      <td>{club.purpose}</td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
+
+    const questionsTable = (
       <div className="table-responsive">
         <table className="table table-bordered table-fixed admin-table">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Club Name</th>
-              <th scope="col">Email Address</th>
-              <th scope="col">Statement of Interest</th>
+              <th className="col-xs-1"></th>
+              <th className="col-xs-8">Question</th>
+              <th className="col-xs-3">Author</th>
             </tr>
           </thead>
           <tbody>
             {
-              this.state.clubs.map((club, i) => {
+              this.state.questions.map((q, i) => {
                 return (
-                  <tr key={i}>
-                    <th scope="row">{i + 1}</th>
-                    <td>{club.name}</td>
-                    <td>{club.email}</td>
-                    <td>{club.purpose}</td>
+                  <tr className={q.answered ? "answered" : "notAnswered"} key={i}>
+                    <th className="col-xs-1 check-question">
+                    {q.answered ? <i className="fas fa-check"></i> : 
+                    <button type="button" className="btn btn-submit btn-setAnswered" onClick={() => {this.setQuestionAnswered(q, i)}}>
+                        <i className="fas fa-times"></i>
+                    </button>}
+                </th>
+                    <td className="col-xs-8">{q.question}</td>
+                    <td className="col-xs-3">{q.name}</td>
                   </tr>
                 )
               })
@@ -216,6 +278,8 @@ class Admin extends React.Component {
       display = studentsTable;
     } else if (this.state.navActive === "clubs") {
       display = clubsTable;
+    } else if (this.state.navActive === "questions") {
+      display = questionsTable;
     }
 
     return (
@@ -245,6 +309,12 @@ class Admin extends React.Component {
                     name="clubs"
                     >
                   <span className="nav-link nav-button" onClick={this.setNavClubs.bind(this)}>Clubs
+                  </span>
+                </li>
+                <li className={this.state.navActive === "questions" ? "nav-item active" : "nav-item"} 
+                    name="questions"
+                    >
+                  <span className="nav-link nav-button" onClick={this.setNavQuestions.bind(this)}>Questions
                   </span>
                 </li>
                 <li className="nav-item"

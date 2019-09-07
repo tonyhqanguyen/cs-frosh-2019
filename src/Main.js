@@ -10,6 +10,7 @@ import Recover from './views/Recover';
 import Profile from './views/Profile';
 import RegistrationCategory from './views/RegistrationCategory';
 import Admin from './views/Admin';
+import Questions from './views/Questions';
 import withAuth from './components/withAuth';
 
 const Main = () => { 
@@ -26,6 +27,7 @@ const Main = () => {
 				<Route path="/recover" component={Recover}/>
 				<Route path="/profile" component={withAuth(Profile)}/>
 				<Route path="/admin" component={withAuth(Admin)}/>
+				<Route path="/questions" component={withAuth(Questions)}/>
 			</Switch>
 		</div>    
 	)

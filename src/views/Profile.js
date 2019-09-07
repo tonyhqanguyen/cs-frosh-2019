@@ -90,21 +90,21 @@ class Profile extends React.Component {
     
     return (
       <div className="container">
-        <div class="modal fade sched-modal" id="confirmCheckIn" tabindex="-1" role="dialog" aria-labelledby="confirmCheckIn" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="confirmCheckIn">Check-in Confirmation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal fade sched-modal" id="confirmCheckIn" tabIndex="-1" role="dialog" aria-labelledby="confirmCheckIn" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="confirmCheckIn">Check-in Confirmation</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 You are about to check-in to the Computer Science Orientation 2019 at the University of Toronto, please click the 
                 'Confirm' button below to confirm!
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-success bold-font" data-dismiss="modal" onClick={this.checkIn.bind(this)}>Confirm</button>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-success bold-font" data-dismiss="modal" onClick={this.checkIn.bind(this)}>Confirm</button>
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@ class Profile extends React.Component {
                 }
                 {this.state.success ? 
                 <div className="alert alert-success alert-dismissible fade show alert-left" role="alert">
-                  Your information has been updated successfully!.
+                  Your information has been updated successfully!
                 <button type="button" className="close" aria-label="Close" onClick={async () => {this.setState({ success: false })}}>
                     <span aria-hidden="true">&times;</span>
                 </button>

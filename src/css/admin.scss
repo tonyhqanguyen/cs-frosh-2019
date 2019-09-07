@@ -72,13 +72,13 @@ th, td {
     background-color: lightblue;
   }
 
-  .notCheckedIn {
+  .notCheckedIn, .notAnswered {
     td {
       background-color: beige;
     }
   }
 
-  .checkedIn {
+  .checkedIn, .answered {
     td {
       background-color: lightgreen;
     }
@@ -96,4 +96,8 @@ th, td {
 
 .w-m-90 {
   width: 90px !important;
+}
+
+.check-question {
+  text-align: center;
 }
