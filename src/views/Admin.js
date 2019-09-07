@@ -231,34 +231,36 @@ class Admin extends React.Component {
     )
 
     const questionsTable = (
-      <div className="table-responsive">
-        <table className="table table-bordered table-fixed admin-table">
-          <thead>
-            <tr>
-              <th className="col-xs-1"></th>
-              <th className="col-xs-8">Question</th>
-              <th className="col-xs-3">Author</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.questions.map((q, i) => {
-                return (
-                  <tr className={q.answered ? "answered" : "notAnswered"} key={i}>
-                    <th className="col-xs-1 check-question">
-                    {q.answered ? <i className="fas fa-check"></i> : 
-                    <button type="button" className="btn btn-submit btn-setAnswered" onClick={() => {this.setQuestionAnswered(q, i)}}>
-                        <i className="fas fa-times"></i>
-                    </button>}
-                </th>
-                    <td className="col-xs-8">{q.question}</td>
-                    <td className="col-xs-3">{q.name}</td>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
+      <div className="card h-94">
+        <div className="table-responsive">
+          <table className="table table-bordered table-fixed admin-table">
+            <thead>
+              <tr>
+                <th className="col-xs-1"></th>
+                <th className="col-xs-8">Question</th>
+                <th className="col-xs-3">Author</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.state.questions.map((q, i) => {
+                  return (
+                    <tr className={q.answered ? "answered" : "notAnswered"} key={i}>
+                      <th className="col-xs-1 check-question">
+                      {q.answered ? <i className="fas fa-check"></i> : 
+                      <button type="button" className="btn btn-submit btn-setAnswered" onClick={() => {this.setQuestionAnswered(q, i)}}>
+                          <i className="fas fa-times"></i>
+                      </button>}
+                  </th>
+                      <td className="col-xs-8">{q.question}</td>
+                      <td className="col-xs-3">{q.name}</td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
     )
 
