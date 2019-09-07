@@ -186,7 +186,7 @@ const InfoForm = (props) => {
         <button type="button" className="btn btn-submit" data-toggle="modal" data-target="#confirmCheckIn">
           Check-in
         </button> : null}
-      {!props.displayEmail ? 
+      {!props.displayEmail  && props.checkedIn ? 
       <Link to={{
         pathname: "/questions",
         state: {
